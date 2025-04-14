@@ -1,4 +1,4 @@
-package com.example.Medical.App.Dto;
+package com.example.Medical.App.dto;
 
 import java.util.Date;
 

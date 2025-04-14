@@ -9,8 +9,6 @@ import lombok.*;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 @Builder
 public class RendezVous {

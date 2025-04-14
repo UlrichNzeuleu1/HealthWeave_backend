@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 @Builder
 
@@ -24,7 +23,6 @@ public class Assurance {
     @OneToMany(mappedBy = "assurance" ,cascade = CascadeType.ALL)
     private List<Patient> patients;
 
-    private Patient patient;
 
 
 }

@@ -16,6 +16,8 @@ public class Compte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "email", unique = true)
     private String email;
     private String password;
 

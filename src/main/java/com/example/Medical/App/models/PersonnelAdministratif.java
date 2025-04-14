@@ -7,18 +7,11 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 @Builder
-public class PersonnelAdministratif {
+public class PersonnelAdministratif extends Utilisateur {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nom;
-    private String prenom;
     private String role;
-    private String numeroTelephone;
 
     @ManyToOne
     @JoinColumn(name = "adresse_id")

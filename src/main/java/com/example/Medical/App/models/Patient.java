@@ -10,13 +10,12 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Data
 @SuperBuilder
 public class Patient extends Utilisateur{
 
     private String antecedentsMedicaux;
-    private List<String> allergies;
+    private String allergies;
 
     @ManyToOne
     @JoinColumn(name = "adresse_id")
@@ -28,7 +27,7 @@ public class Patient extends Utilisateur{
 
     @ManyToOne
     @JoinColumn(name = "medecin_id")
-    private Medecin medecin ;
+    private Medecin medecin;
 
     @OneToMany(mappedBy = "patient", cascade =  CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Facture> factures;
