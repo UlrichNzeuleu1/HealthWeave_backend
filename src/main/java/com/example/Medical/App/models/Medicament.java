@@ -18,9 +18,6 @@ public class Medicament {
     private Long id;
     private String nom;
     private String dosage;
-    private Date datePeremption;
-    private String effetSecondaires;
-    private String contreIndications;
 
     @ManyToMany(mappedBy = "medicaments", cascade =  CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DossierMedical> dossierMedicalList;

@@ -14,7 +14,7 @@ import java.util.List;
 public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String typeConsultation;
     private Date dateConsultation;
     private String Heure;
