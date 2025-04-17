@@ -2,6 +2,7 @@ package com.example.Medical.App.models;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.util.Date;
 
 import lombok.*;
@@ -16,7 +17,7 @@ public class RendezVous {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date dateRendezVous;
+    private Instant dateRendezVous;
     private String heure;
     private String statut;
 

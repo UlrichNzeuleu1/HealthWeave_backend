@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String sexe;
-    private Date dateDeNaissance;
+    private Instant dateDeNaissance;
     private String typeUtilisateur;
 
     @Column(name = "email", unique = true)
