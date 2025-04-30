@@ -72,18 +72,19 @@ public class AssuranceServiceImpl implements AssuranceService {
     }
 
     @Override
-    public AssuranceDto update(Long id, AssuranceDto assuranceDto) {
-        AssuranceDto assuranceDto1 = assuranceRepository.findById(id)
+    public AssuranceDto update(Long id, AssuranceDto updatedAssurance) {
+
+        AssuranceDto assuranceDto = assuranceRepository.findById(id)
                 .map(AssuranceDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucune assurance trouve avec l'id "+id+ " dans la based de donnees"));
 
-        Assurance assurance = new Assurance();
+        AssuranceDto assuranceToUpdate = new AssuranceDto();
 
-        assurance.setNomAssureur(assuranceDto.getNomAssureur());
-        assurance.setNumeroPolice(assuranceDto.getNumeroPolice());
-        assurance.setTypeCouverture(assuranceDto.getTypeCouverture());
+        assuranceToUpdate.setNomAssureur(updatedAssurance.getNomAssureur());
+        assuranceToUpdate.setNumeroPolice(updatedAssurance.getNumeroPolice());
+        assuranceToUpdate.setTypeCouverture(updatedAssurance.getTypeCouverture());
 
-        return AssuranceDto.fromEntity(assuranceRepository.save(AssuranceDto.toEntity(assuranceDto)));
+        return AssuranceDto.fromEntity(assuranceRepository.save(AssuranceDto.toEntity(assuranceToUpdate)));
     }
 
     @Override
