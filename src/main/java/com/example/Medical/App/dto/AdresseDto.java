@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @Builder
@@ -19,10 +20,9 @@ public class AdresseDto {
     private String ville;
     private String pays;
 
-
     // Mapping from Entity ----> to Dto
 
-    public  static AdresseDto fromEntity(Adresse adresse){
+    public static AdresseDto fromEntity(Adresse adresse){
         return AdresseDto.builder()
                 .id(adresse.getId())
                 .pays(adresse.getPays())

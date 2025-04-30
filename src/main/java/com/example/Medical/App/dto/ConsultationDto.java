@@ -7,8 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.List;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -18,7 +17,7 @@ public class ConsultationDto{
 
     private Long id;
     private String typeConsultation;
-    private Date dateConsultation;
+    private Instant dateConsultation;
     private String Heure;
     private String statut;
 

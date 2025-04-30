@@ -3,12 +3,14 @@ package com.example.Medical.App.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
+@SuperBuilder
 public class PersonnelAdministratif extends Utilisateur {
 
     private String role;

@@ -2,6 +2,7 @@ package com.example.Medical.App.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Adresse {
     @OneToMany(mappedBy = "adresse")
     private List<Patient> patients;
 
-    @OneToMany(mappedBy = "adresse")
+    @OneToMany(mappedBy = "adresse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PersonnelAdministratif> personnelAdministratifs;
 
 }

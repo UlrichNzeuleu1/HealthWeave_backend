@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Getter
@@ -18,7 +19,7 @@ public class UtilisateurDto {
     private String nom;
     private String prenom;
     private String sexe;
-    private Date dateDeNaissance;
+    private Instant dateDeNaissance;
     private String typeUtilisateur;
 
     public static UtilisateurDto fromEntity(Utilisateur utilisateur){
