@@ -12,21 +12,21 @@ import static com.example.Medical.App.utils.Constants.APP_ROOT;
 @Api(APP_ROOT + "/assurances")
 public interface AssuranceApi {
 
-    @PostMapping(value = APP_ROOT + "/assurance/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = APP_ROOT + "/assurances/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto save (@RequestBody AssuranceDto assuranceDto);
 
-    @GetMapping(value = APP_ROOT + "/assurance/{idAssurance}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/assurances/{idAssurance}", produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto findById (@PathVariable("idAssurance") Long id);
 
-    @GetMapping(value = APP_ROOT + "/assurance/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/assurances/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<AssuranceDto> findAll ();
 
-    @GetMapping(value = APP_ROOT + "/assurance/{nomAssureur}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/assurances/{nomAssureur}", produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto findByNomAssureur(@PathVariable("nomAssureur") String nomAssureur);
 
-    @PutMapping(value = APP_ROOT + "/assurance/{idAssurance}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = APP_ROOT + "/assurances/{idAssurance}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto update (@PathVariable("idAssurance") Long id, @RequestBody AssuranceDto assuranceDto);
 
-    @DeleteMapping(value = APP_ROOT + "/assurance/delete/{idAssurance}")
+    @DeleteMapping(value = APP_ROOT + "/assurances/delete/{idAssurance}")
     void delete (@PathVariable("idAssurance") Long id);
 }
