@@ -3,7 +3,7 @@ package com.example.Medical.App.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double montant;
-    private Instant dateEmission;
+    private LocalDateTime dateEmission;
     private String statutPaiement;
 
     @ManyToOne

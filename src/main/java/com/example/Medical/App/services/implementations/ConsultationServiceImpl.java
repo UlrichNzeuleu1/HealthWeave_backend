@@ -70,8 +70,8 @@ public class ConsultationServiceImpl implements ConsultationService {
             throw new IllegalArgumentException("Le type de consultation ne peut pas être vide.");
         }
         return consultationRepository.findByType(type);
-                //.map(ConsultationDto::fromEntity)
-                //.orElseThrow(()-> new EntityNotFoundException("Aucune consultation avec le type : "+type+" dans la bdd. " ,ErrorCodes.CONSULTATION_NOT_FOUND));
+//                .map(ConsultationDto::fromEntity)
+//                .orElseThrow(()-> new EntityNotFoundException("Aucune consultation avec le type : "+type+" dans la bdd. " ,ErrorCodes.CONSULTATION_NOT_FOUND));
     }
 
     @Override

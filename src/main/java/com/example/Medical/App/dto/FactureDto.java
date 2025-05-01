@@ -1,10 +1,7 @@
 package com.example.Medical.App.dto;
 
 import com.example.Medical.App.models.Facture;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class FactureDto {
 
     private Long id;
@@ -20,8 +18,8 @@ public class FactureDto {
     private String statutPaiement;
 
     // Mapping entity ----> to Dto
-    public static FactureDto toEntity(FactureDto dto){
-        return FactureDto.builder()
+    public static Facture toEntity(FactureDto dto){
+        return Facture.builder()
                 .id(dto.getId())
                 .dateEmission(dto.getDateEmission())
                 .montant(dto.getMontant())
@@ -30,8 +28,8 @@ public class FactureDto {
     }
 
     // Mapping from Dto ----> to Entity
-    public static Facture fromEntity(Facture facture){
-        return Facture.builder()
+    public static FactureDto fromEntity(Facture facture){
+        return FactureDto.builder()
                 .id(facture.getId())
                 .dateEmission(facture.getDateEmission())
                 .montant(facture.getMontant())
