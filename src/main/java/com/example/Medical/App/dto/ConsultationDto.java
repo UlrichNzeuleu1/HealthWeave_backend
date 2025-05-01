@@ -2,10 +2,7 @@ package com.example.Medical.App.dto;
 
 import com.example.Medical.App.models.Consultation;
 import com.example.Medical.App.models.RendezVous;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 
@@ -13,22 +10,26 @@ import java.time.Instant;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class ConsultationDto{
 
     private Long id;
-    private String typeConsultation;
-    private Instant dateConsultation;
-    private String Heure;
+    private String type;
+    private Instant date;
+    private String heure;
     private String statut;
 
 
+
+
     // Mapping from Entity ---->> to Dto
+
     public static ConsultationDto fromEntity(Consultation consultation){
         return ConsultationDto.builder()
                 .id(consultation.getId())
-                .dateConsultation(consultation.getDateConsultation())
-                .typeConsultation(consultation.getTypeConsultation())
-                .Heure(consultation.getHeure())
+                .date(consultation.getDate())
+                .type(consultation.getType())
+                .heure(consultation.getHeure())
                 .statut(consultation.getStatut())
                 .build();
     }
@@ -38,10 +39,12 @@ public class ConsultationDto{
     public static Consultation toEntity(ConsultationDto dto){
         return Consultation.builder()
                 .id(dto.getId())
-                .dateConsultation(dto.getDateConsultation())
-                .typeConsultation(dto.getTypeConsultation())
-                .Heure(dto.getHeure())
+                .date(dto.getDate())
+                .type(dto.getType())
+                .heure(dto.getHeure())
                 .statut(dto.getStatut())
                 .build();
     }
+
+
 }

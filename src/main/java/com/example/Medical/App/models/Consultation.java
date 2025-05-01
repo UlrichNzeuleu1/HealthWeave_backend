@@ -15,9 +15,9 @@ public class Consultation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String typeConsultation;
-    private Instant dateConsultation;
-    private String Heure;
+    private String type;
+    private Instant date;
+    private String heure;
     private String statut;
 
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
