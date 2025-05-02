@@ -3,10 +3,7 @@ package com.example.Medical.App.dto;
 import com.example.Medical.App.models.Adresse;
 import com.example.Medical.App.models.Medecin;
 import com.example.Medical.App.models.RendezVous;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,6 +11,7 @@ import java.util.List;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MedecinDto {
 
     private String specialite;
