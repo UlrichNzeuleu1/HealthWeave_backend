@@ -1,15 +1,12 @@
 package com.example.Medical.App.services.implementations;
 
-import com.example.Medical.App.dto.CompteDto;
 import com.example.Medical.App.dto.ConsultationDto;
 import com.example.Medical.App.exception.EntityNotFoundException;
 import com.example.Medical.App.exception.ErrorCodes;
 import com.example.Medical.App.exception.InvalidEntityException;
-import com.example.Medical.App.models.Consultation;
 import com.example.Medical.App.repositories.ConsultationRepository;
 import com.example.Medical.App.services.interfaces.ConsultationService;
 import com.example.Medical.App.validateurs.ConsultationValidateur;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +14,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.hibernate.Hibernate.map;
-
 
 @Service
 @Slf4j
@@ -48,7 +42,7 @@ public class ConsultationServiceImpl implements ConsultationService {
     @Override
     public ConsultationDto findById(Long id) {
         if (id == null){
-            log.error("Consultation id null");
+            log.error("ID is null");
             return null;
         }
         return consultationRepository.findById(id)
