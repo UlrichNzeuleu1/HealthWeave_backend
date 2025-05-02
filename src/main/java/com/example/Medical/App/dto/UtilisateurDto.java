@@ -1,10 +1,7 @@
 package com.example.Medical.App.dto;
 
 import com.example.Medical.App.models.Utilisateur;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.Date;
@@ -13,6 +10,7 @@ import java.util.Date;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class UtilisateurDto {
 
     private Long id;
