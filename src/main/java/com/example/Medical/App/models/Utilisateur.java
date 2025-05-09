@@ -27,6 +27,7 @@ public class Utilisateur {
     private String prenom;
     private String sexe;
     private LocalDate dateDeNaissance;
+    private String typeUtilisateur;
 
     @Column(name = "email", unique = true)
     private String email;
