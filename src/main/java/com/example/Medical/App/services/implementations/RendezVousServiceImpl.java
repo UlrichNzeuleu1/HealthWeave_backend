@@ -1,15 +1,12 @@
 package com.example.Medical.App.services.implementations;
 
 import com.example.Medical.App.dto.RendezVousDto;
-import com.example.Medical.App.dto.RendezVousDto;
 import com.example.Medical.App.exception.EntityNotFoundException;
 import com.example.Medical.App.exception.ErrorCodes;
 import com.example.Medical.App.exception.InvalidEntityException;
-import com.example.Medical.App.models.RendezVous;
 import com.example.Medical.App.repositories.RendezVousRepository;
 import com.example.Medical.App.services.interfaces.RendezVousService;
 import com.example.Medical.App.validateurs.RendezVousValidateur;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,15 +50,14 @@ public class RendezVousServiceImpl implements RendezVousService {
     }
 
     @Override
-    public RendezVousDto findByStatut(String statut) {
+    public List<RendezVousDto> findAllByStatut(String statut) {
         if (!StringUtils.hasLength(statut)) {
             log.error("Statut is empty");
             return null;
         }
-        return repository.findByStatut(statut)
+        return repository.findAllByStatut(statut).stream()
                 .map(RendezVousDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+statut+" dans la bdd", ErrorCodes.RENDEZ_VOUS_NOT_FOUND));
-
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -77,13 +73,12 @@ public class RendezVousServiceImpl implements RendezVousService {
                 .map(RendezVousDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
-        RendezVousDto rendezVousToUptade = new RendezVousDto();
 
-        rendezVousToUptade.setDateRendezVous(updatedRendezVousDto.getDateRendezVous());
-        rendezVousToUptade.setHeure(updatedRendezVousDto.getHeure());
-        rendezVousToUptade.setStatut(updatedRendezVousDto.getStatut());
+        dto.setDateRendezVous(updatedRendezVousDto.getDateRendezVous());
+        dto.setHeure(updatedRendezVousDto.getHeure());
+        dto.setStatut(updatedRendezVousDto.getStatut());
 
-        return RendezVousDto.fromEntity(repository.save(RendezVousDto.toEntity(rendezVousToUptade)));
+        return RendezVousDto.fromEntity(repository.save(RendezVousDto.toEntity(dto)));
 
     }
 

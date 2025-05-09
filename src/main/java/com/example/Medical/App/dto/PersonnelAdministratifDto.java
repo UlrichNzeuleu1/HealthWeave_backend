@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 public class PersonnelAdministratifDto {
 
+    private Long id;
     private Adresse adresse;
     private String role;
 

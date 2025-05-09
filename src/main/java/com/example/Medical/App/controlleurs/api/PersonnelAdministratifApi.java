@@ -16,10 +16,10 @@ public interface PersonnelAdministratifApi {
     @PostMapping(value = APP_ROOT + "/personnelAdministratifs/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     PersonnelAdministratifDto save (@RequestBody PersonnelAdministratifDto dto);
 
-    @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{idPersonnel}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{idPersonnel}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     PersonnelAdministratifDto findById (@PathVariable("idPersonnel") Long id);
 
-    @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{nomPersonnel}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{nomPersonnel}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
     PersonnelAdministratifDto findByNom (@PathVariable("nomPersonnel") String nom);
 
     @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{role}", produces = MediaType.APPLICATION_JSON_VALUE)

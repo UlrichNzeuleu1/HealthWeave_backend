@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.swing.text.html.parser.Entity;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -15,7 +16,7 @@ import java.util.Date;
 public class RendezVousDto {
 
     private Long id;
-    private Instant dateRendezVous;
+    private LocalDate dateRendezVous;
     private String heure;
     private String statut;
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 public class AdresseControlleur implements AdresseApi {
+
     private final AdresseService adresseService;
 
     @Autowired

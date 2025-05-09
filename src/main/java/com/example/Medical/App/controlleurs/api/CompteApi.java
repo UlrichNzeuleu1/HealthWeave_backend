@@ -16,13 +16,13 @@ public interface CompteApi {
     @PostMapping(value = APP_ROOT + "/comptes/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     CompteDto save (@RequestBody CompteDto compteDto);
 
-    @GetMapping(value = APP_ROOT + "/comptes/{idCompte}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/comptes/{idCompte}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     CompteDto findById (@PathVariable("idCompte") Long id);
 
     @GetMapping(value = APP_ROOT + "/comptes/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<CompteDto> findAll ();
 
-    @GetMapping(value = APP_ROOT + "/comptes/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/comptes/{email}/getByEmail", produces = MediaType.APPLICATION_JSON_VALUE)
     CompteDto findByEmail(@PathVariable("email") String email);
 
     @PutMapping(value = APP_ROOT + "/comptes/{idCompte}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

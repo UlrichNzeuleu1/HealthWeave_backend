@@ -29,8 +29,8 @@ public class RendezVousControlleur implements RendezVousApi {
     }
 
     @Override
-    public RendezVousDto findByStatut(String status) {
-        return service.findByStatut(status);
+    public List<RendezVousDto> findAllByStatut(String statut) {
+        return service.findAllByStatut(statut);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Hopital {
     private String nom;
     private String numeroTelephone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 

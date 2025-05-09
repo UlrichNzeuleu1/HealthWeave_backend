@@ -8,6 +8,7 @@ import com.example.Medical.App.exception.InvalidEntityException;
 import com.example.Medical.App.repositories.MedicamentRepository;
 import com.example.Medical.App.services.interfaces.MedicamentService;
 import com.example.Medical.App.validateurs.MedicamentValidateur;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class MedicamentServiceImpl implements MedicamentService {
     }
 
     @Override
+    @Transactional
     public MedicamentDto save(MedicamentDto medicamentDto) {
 
         List<String> errors = MedicamentValidateur.validate(medicamentDto);
@@ -77,12 +79,11 @@ public class MedicamentServiceImpl implements MedicamentService {
                 .map(MedicamentDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun medecin trouve avec l'id " +id+" en bdd",ErrorCodes.MEDICAMENT_NOT_FOUND));
 
-        MedicamentDto medicamentToUpdate = new MedicamentDto();
 
-        medicamentToUpdate.setDosage(updatedMedicamentDto.getDosage());
-        medicamentToUpdate.setNom(updatedMedicamentDto.getNom());
+        dto.setDosage(updatedMedicamentDto.getDosage());
+        dto.setNom(updatedMedicamentDto.getNom());
 
-        return MedicamentDto.fromEntity(medicamentRepository.save(MedicamentDto.toEntity(medicamentToUpdate)));
+        return MedicamentDto.fromEntity(medicamentRepository.save(MedicamentDto.toEntity(dto)));
     }
 
     @Override

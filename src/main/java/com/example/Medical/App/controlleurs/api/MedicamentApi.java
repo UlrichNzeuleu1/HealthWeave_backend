@@ -16,10 +16,10 @@ public interface MedicamentApi {
     @PostMapping(value = APP_ROOT + "/medicaments/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     MedicamentDto save (@RequestBody MedicamentDto medicamentDto);
 
-    @GetMapping(value = APP_ROOT + "/medicaments/{idMedicament}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/medicaments/{idMedicament}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     MedicamentDto findById (@PathVariable("idMedicament") Long id);
 
-    @GetMapping(value = APP_ROOT + "/medicaments/{nomMedicament}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/medicaments/{nomMedicament}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
     MedicamentDto findByNom (@PathVariable("nomMedicament") String nom);
 
     @GetMapping(value = APP_ROOT + "/medicaments/all", produces = MediaType.APPLICATION_JSON_VALUE)

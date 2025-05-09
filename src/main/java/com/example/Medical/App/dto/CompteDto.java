@@ -19,6 +19,7 @@ public class CompteDto {
         return CompteDto.builder()
                 .id(compte.getId())
                 .email(compte.getEmail())
+                .password(compte.getPassword())
                 .build();
     }
 
@@ -27,6 +28,7 @@ public class CompteDto {
         return Compte.builder()
                 .id(dto.getId())
                 .email(dto.getEmail())
+                .password(dto.getPassword())
                 .build();
     }
 

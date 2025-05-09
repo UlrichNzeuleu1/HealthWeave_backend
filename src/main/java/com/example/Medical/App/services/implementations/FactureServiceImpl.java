@@ -64,12 +64,11 @@ public class FactureServiceImpl implements FactureService {
                 .map(FactureDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucune facture trouvee avec l'id "+id+" dans la bdd", ErrorCodes.FACTURE_NOT_FOUND));
 
-        Facture factureToUpdate = new Facture();
-        factureToUpdate.setDateEmission(updatedFactureDto.getDateEmission());
-        factureToUpdate.setMontant(updatedFactureDto.getMontant());
-        factureToUpdate.setStatutPaiement(updatedFactureDto.getStatutPaiement());
+        dto.setDateEmission(updatedFactureDto.getDateEmission());
+        dto.setMontant(updatedFactureDto.getMontant());
+        dto.setStatutPaiement(updatedFactureDto.getStatutPaiement());
 
-        return FactureDto.fromEntity(factureRepository.save(FactureDto.toEntity(updatedFactureDto)));
+        return FactureDto.fromEntity(factureRepository.save(FactureDto.toEntity(dto)));
     }
 
     @Override

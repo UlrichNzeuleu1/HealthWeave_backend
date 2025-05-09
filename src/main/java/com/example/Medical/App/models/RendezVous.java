@@ -3,6 +3,7 @@ package com.example.Medical.App.models;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 import lombok.*;
@@ -10,6 +11,7 @@ import lombok.*;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 public class RendezVous {
@@ -17,7 +19,7 @@ public class RendezVous {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Instant dateRendezVous;
+    private LocalDate dateRendezVous;
     private String heure;
     private String statut;
 

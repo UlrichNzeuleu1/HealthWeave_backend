@@ -14,6 +14,10 @@ import java.util.List;
 @SuperBuilder
 public class Patient extends Utilisateur{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String antecedentsMedicaux;
     private String allergies;
 

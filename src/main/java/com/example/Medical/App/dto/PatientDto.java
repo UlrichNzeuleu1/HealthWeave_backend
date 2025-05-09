@@ -12,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 public class PatientDto {
 
+    private Long id;
     private String antecedentsMedicaux;
     private String allergies;
     private Adresse adresse;

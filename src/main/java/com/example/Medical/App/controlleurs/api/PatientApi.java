@@ -16,10 +16,10 @@ public interface PatientApi {
     @PostMapping(value = APP_ROOT + "/patients/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     PatientDto save (@RequestBody PatientDto patientDto);
 
-    @GetMapping(value = APP_ROOT + "/patients/{idPatient}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/patients/{idPatient}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     PatientDto findById (@PathVariable("idPatient") Long id);
 
-    @GetMapping(value = APP_ROOT + "/patients/{nomPatient}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/patients/{nomPatient}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
     PatientDto findByNom (@PathVariable("nomPatient") String nom);
 
     @GetMapping(value = APP_ROOT + "/patients/all", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -77,13 +77,11 @@ public class HopitalServiceImpl implements HopitalService {
                 .map(HopitalDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun hopital trouve avec l'id " +id+" en bdd",ErrorCodes.HOPITAL_NOT_FOUND));
 
-        HopitalDto hopitalToUpdate = new HopitalDto();
+        dto.setAdresse(updatedHopitalDto.getAdresse());
+        dto.setNom(updatedHopitalDto.getNom());
+        dto.setNumeroTelephone(updatedHopitalDto.getNumeroTelephone());
 
-        hopitalToUpdate.setAdresse(updatedHopitalDto.getAdresse());
-        hopitalToUpdate.setNom(updatedHopitalDto.getNom());
-        hopitalToUpdate.setNumeroTelephone(updatedHopitalDto.getNumeroTelephone());
-
-        return HopitalDto.fromEntity(hopitalRepository.save(HopitalDto.toEntity(hopitalToUpdate)));
+        return HopitalDto.fromEntity(hopitalRepository.save(HopitalDto.toEntity(dto)));
     }
 
     @Override

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,14 +59,15 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     @Override
-    public ConsultationDto findByType(String type) {
+    public List<ConsultationDto> findByType(String type) {
         if (!StringUtils.hasLength(type)) {
             log.error("Le type de consultation est vide");
-            throw new IllegalArgumentException("Le type de consultation ne peut pas être vide.");
+            return null;
         }
-        return consultationRepository.findByType(type);
-//                .map(ConsultationDto::fromEntity)
-//                .orElseThrow(()-> new EntityNotFoundException("Aucune consultation avec le type : "+type+" dans la bdd. " ,ErrorCodes.CONSULTATION_NOT_FOUND));
+        return consultationRepository.findByType(type)
+                .stream()
+                .map(ConsultationDto::fromEntity)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -74,22 +76,19 @@ public class ConsultationServiceImpl implements ConsultationService {
                 .map(ConsultationDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucune consultation trouvee avec l'id "+id+ " dans la base de donnees", ErrorCodes.CONSULTATION_NOT_FOUND));
 
-        ConsultationDto consultationToUpdate = new ConsultationDto();
 
-        consultationToUpdate.setDate(updatedConsultation.getDate());
-        consultationToUpdate.setType(updatedConsultation.getType());
-        consultationToUpdate.setHeure(updatedConsultation.getHeure());
-        consultationToUpdate.setStatut(updatedConsultation.getStatut());
+        dto.setDate(updatedConsultation.getDate());
+        dto.setType(updatedConsultation.getType());
+        dto.setHeure(updatedConsultation.getHeure());
+        dto.setStatut(updatedConsultation.getStatut());
 
-        return ConsultationDto.fromEntity(consultationRepository.save(ConsultationDto.toEntity(consultationToUpdate)));
+        return ConsultationDto.fromEntity(consultationRepository.save(ConsultationDto.toEntity(dto)));
     }
 
     @Override
     public void delete(Long id) {
-
         if (id == null)
             log.error("id is null");
-
         consultationRepository.deleteById(id);
     }
 }

@@ -2,6 +2,7 @@ package com.example.Medical.App.controlleurs;
 
 import com.example.Medical.App.controlleurs.api.ConsultationApi;
 import com.example.Medical.App.dto.ConsultationDto;
+import com.example.Medical.App.exception.EntityNotFoundException;
 import com.example.Medical.App.services.interfaces.ConsultationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,14 +36,9 @@ public class ConsultationControlleur implements ConsultationApi {
     }
 
     @Override
-    public ConsultationDto findByTypeConsultation(String typeConsultation) {
-        return consultationService.findByType(typeConsultation);
-    }
-
-    /*@Override
-    public ConsultationDto findByType(String type) {
+    public List<ConsultationDto> findByType(String type) {
         return consultationService.findByType(type);
-    }*/
+    }
 
     @Override
     public ConsultationDto update(Long id, ConsultationDto consultationDto) {

@@ -21,9 +21,9 @@ public class ConsultationValidateur {
             return erreurs;
         }
 
-        if (!StringUtils.hasLength(dto.getTypeConsultation()))
+        if (!StringUtils.hasLength(dto.getType()))
             erreurs.add("Veuillez renseignez le type de consultation");
-        if (dto.getDateConsultation() == null)
+        if (dto.getDate() == null)
             erreurs.add("Veuillez renseignez la date de consultation");
         if (!StringUtils.hasLength(dto.getHeure()))
             erreurs.add("Veuillez renseignez l'heure");

@@ -20,7 +20,7 @@ public class DossierMedical {
     private List<String> prescriptions;
 
     @ManyToOne
-    @JoinColumn(name = "patientr_id")
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     @ManyToOne
@@ -29,7 +29,6 @@ public class DossierMedical {
 
     @ManyToMany
     @JoinTable(
-            name = "dossier_medicament",
             joinColumns = @JoinColumn(name = "dossier_id"),
             inverseJoinColumns = @JoinColumn(name = "medicament_id")
     )

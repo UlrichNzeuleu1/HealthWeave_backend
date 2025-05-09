@@ -2,22 +2,24 @@ package com.example.Medical.App.dto;
 
 import com.example.Medical.App.models.Utilisateur;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class UtilisateurDto {
 
     private Long id;
     private String nom;
     private String prenom;
     private String sexe;
-    private Instant dateDeNaissance;
+    private LocalDate dateDeNaissance;
     private String typeUtilisateur;
 
     public static UtilisateurDto fromEntity(Utilisateur utilisateur){

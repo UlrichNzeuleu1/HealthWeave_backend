@@ -16,10 +16,10 @@ public interface HopitalApi {
     @PostMapping(value = APP_ROOT + "/hopitals/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     HopitalDto save (@RequestBody HopitalDto hopitalDto);
 
-    @GetMapping(value = APP_ROOT + "/hopitals/{idHopital}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/hopitals/{idHopital}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     HopitalDto findById (@PathVariable("idHopital") Long id);
 
-    @GetMapping(value = APP_ROOT + "/hopitals/{nomHopital}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/hopitals/{nomHopital}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
     HopitalDto findByNom (@PathVariable("nomHopital") String nom);
 
     @GetMapping(value = APP_ROOT + "/hopitals/all", produces = MediaType.APPLICATION_JSON_VALUE)

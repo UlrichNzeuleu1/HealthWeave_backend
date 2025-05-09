@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,24 +21,24 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DossierMedicalServiceImpl implements DossierMedicalService {
 
-    private final DossierMedicalRepository dossierMedicalRepository;
+    private final DossierMedicalRepository repository;
 
     @Autowired
-    public DossierMedicalServiceImpl(DossierMedicalRepository dossierMedicalRepository) {
-        this.dossierMedicalRepository = dossierMedicalRepository;
+    public DossierMedicalServiceImpl(DossierMedicalRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public DossierMedicalDto save(DossierMedicalDto dossierMedicalDto) {
+    public DossierMedicalDto save(DossierMedicalDto dtoDto) {
 
-        List<String> errors = DossierMedicalValidateur.validate(dossierMedicalDto);
+        List<String> errors = DossierMedicalValidateur.validate(dtoDto);
 
         if (!errors.isEmpty()) {
-            log.error("Dossier Medical is not valid {}", dossierMedicalDto);
+            log.error("Dossier Medical is not valid {}", dtoDto);
             throw new InvalidEntityException("Le dossier medical nest pas valide ", ErrorCodes.DOSSIER_MEDICAL_NOT_VALID, errors);
         }
 
-        return DossierMedicalDto.fromEntity(dossierMedicalRepository.save(DossierMedicalDto.toEntity(dossierMedicalDto)));
+        return DossierMedicalDto.fromEntity(repository.save(DossierMedicalDto.toEntity(dtoDto)));
     }
 
     @Override
@@ -46,14 +47,14 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
             log.error("DossierMedical ID is null");
             return null;
         }
-        return dossierMedicalRepository.findById(id)
+        return repository.findById(id)
                 .map(DossierMedicalDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun dossier medical trouve avec l'ID " +id+ " dans la base de donnees", ErrorCodes.DOSSIER_MEDICAL_NOT_FOUND));
     }
 
     @Override
     public List<DossierMedicalDto> findAll() {
-        return dossierMedicalRepository.findAll()
+        return repository.findAll()
                 .stream()
                 .map(DossierMedicalDto::fromEntity)
                 .collect(Collectors.toList());
@@ -63,16 +64,14 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
     public DossierMedicalDto update(Long id, DossierMedicalDto updatedDossierMedical) {
 
 
-        DossierMedicalDto dto = dossierMedicalRepository.findById(id)
+        DossierMedicalDto dto = repository.findById(id)
                 .map(DossierMedicalDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun dossier medical trouve avec l'ID " +id+ " dans la base de donnees", ErrorCodes.DOSSIER_MEDICAL_NOT_FOUND));
 
-        DossierMedicalDto dossierMedical = new DossierMedicalDto();
-
-        dossierMedical.setHistoriqueMedical(updatedDossierMedical.getHistoriqueMedical());
-        dossierMedical.setPrescriptions(updatedDossierMedical.getPrescriptions());
-        dossierMedical.setTraitements(updatedDossierMedical.getTraitements());
-        return DossierMedicalDto.fromEntity(dossierMedicalRepository.save(DossierMedicalDto.toEntity(dossierMedical)));
+        dto.setHistoriqueMedical(updatedDossierMedical.getHistoriqueMedical());
+        dto.setPrescriptions(updatedDossierMedical.getPrescriptions());
+        dto.setTraitements(updatedDossierMedical.getTraitements());
+        return DossierMedicalDto.fromEntity(repository.save(DossierMedicalDto.toEntity(dto)));
     }
 
     @Override
@@ -80,7 +79,7 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
         if (id == null){
             log.error("ID is null");
         }
-        dossierMedicalRepository.deleteById(id);
+        repository.deleteById(id);
 
     }
 }

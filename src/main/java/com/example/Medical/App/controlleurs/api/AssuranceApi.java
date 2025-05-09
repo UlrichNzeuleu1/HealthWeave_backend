@@ -15,13 +15,13 @@ public interface AssuranceApi {
     @PostMapping(value = APP_ROOT + "/assurances/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto save (@RequestBody AssuranceDto assuranceDto);
 
-    @GetMapping(value = APP_ROOT + "/assurances/{idAssurance}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/assurances/{idAssurance}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto findById (@PathVariable("idAssurance") Long id);
 
     @GetMapping(value = APP_ROOT + "/assurances/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<AssuranceDto> findAll ();
 
-    @GetMapping(value = APP_ROOT + "/assurances/{nomAssureur}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/assurances/{nomAssureur}/getByName", produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto findByNomAssureur(@PathVariable("nomAssureur") String nomAssureur);
 
     @PutMapping(value = APP_ROOT + "/assurances/{idAssurance}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

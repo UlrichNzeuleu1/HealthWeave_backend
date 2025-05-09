@@ -72,16 +72,14 @@ public class CompteServiceImpl implements CompteService {
     @Override
     public CompteDto update(Long id, CompteDto updatedCompte) {
 
-        CompteDto compteDto1 = compteRepository.findById(id)
+        CompteDto compteDto = compteRepository.findById(id)
                 .map(CompteDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun compte trouve avec l'id "+id+" dans la base de donnees ",ErrorCodes.COMPTE_NOT_FOUND));
 
-        CompteDto compteToUpdate = new CompteDto();
+        compteDto.setEmail(updatedCompte.getEmail());
+        compteDto.setPassword(updatedCompte.getPassword());
 
-        compteToUpdate.setEmail(updatedCompte.getEmail());
-        compteToUpdate.setPassword(updatedCompte.getPassword());
-
-        return CompteDto.fromEntity(compteRepository.save(CompteDto.toEntity(compteToUpdate)));
+        return CompteDto.fromEntity(compteRepository.save(CompteDto.toEntity(compteDto)));
     }
 
     @Override

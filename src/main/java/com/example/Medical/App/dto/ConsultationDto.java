@@ -5,6 +5,7 @@ import com.example.Medical.App.models.RendezVous;
 import lombok.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,7 +17,7 @@ public class ConsultationDto{
 
     private Long id;
     private String type;
-    private LocalDateTime date;
+    private LocalDate date;
     private String heure;
     private String statut;
 
@@ -46,6 +47,4 @@ public class ConsultationDto{
                 .statut(dto.getStatut())
                 .build();
     }
-
-
 }

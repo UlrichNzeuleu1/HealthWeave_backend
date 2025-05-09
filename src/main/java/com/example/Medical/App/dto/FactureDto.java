@@ -3,6 +3,7 @@ package com.example.Medical.App.dto;
 import com.example.Medical.App.models.Facture;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,7 +15,7 @@ public class FactureDto {
 
     private Long id;
     private double montant;
-    private LocalDateTime dateEmission;
+    private LocalDate dateEmission;
     private String statutPaiement;
 
     // Mapping entity ----> to Dto

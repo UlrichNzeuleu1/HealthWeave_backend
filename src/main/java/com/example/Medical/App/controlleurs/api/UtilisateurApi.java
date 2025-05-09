@@ -16,11 +16,11 @@ public interface UtilisateurApi {
     @PostMapping(value = APP_ROOT + "/utilisateurs/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     UtilisateurDto save (@RequestBody UtilisateurDto utilisateurDto);
 
-    @GetMapping(value = APP_ROOT + "/utilisateurs/{idUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/utilisateurs/{idUtilisateur}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     UtilisateurDto findById (@PathVariable("idUtilisateur") Long id);
 
-    @GetMapping(value = APP_ROOT + "/utilisateurs/{nomUtilisateur}", produces = MediaType.APPLICATION_JSON_VALUE)
-    UtilisateurDto findByNom (@PathVariable("nomUtilisateur") String nom);
+    @GetMapping(value = APP_ROOT + "/utilisateurs/{nomUtilisateur}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<UtilisateurDto> findByNom (@PathVariable("nomUtilisateur") String nom);
 
     @GetMapping(value = APP_ROOT + "/utilisateurs/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<UtilisateurDto> findAll ();

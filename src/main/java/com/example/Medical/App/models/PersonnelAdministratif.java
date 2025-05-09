@@ -13,6 +13,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class PersonnelAdministratif extends Utilisateur {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String role;
 
     @ManyToOne

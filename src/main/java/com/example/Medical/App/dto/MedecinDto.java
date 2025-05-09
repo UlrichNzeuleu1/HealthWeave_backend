@@ -4,6 +4,7 @@ import com.example.Medical.App.models.Adresse;
 import com.example.Medical.App.models.Medecin;
 import com.example.Medical.App.models.RendezVous;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MedecinDto {
 
+    private Long id;
     private String specialite;
     private List<RendezVous> rendezVousList;
     private Adresse adresse;

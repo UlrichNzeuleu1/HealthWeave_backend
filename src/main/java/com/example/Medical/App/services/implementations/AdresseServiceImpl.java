@@ -61,16 +61,14 @@ public class AdresseServiceImpl implements AdresseService {
 
         AdresseDto adresseDto = adresseRepository.findById(id)
                 .map(AdresseDto::fromEntity)
-                .orElseThrow( ()-> new EntityNotFoundException("Aucune adresse trouivee avec l'id " +id));
+                .orElseThrow( ()-> new EntityNotFoundException("Aucune adresse trouvee avec l'id " +id+ " dans la base de donnees. "));
 
 
-        Adresse adresse = new Adresse();
-
-        adresse.setPays(updatedAdresse.getPays());
-        adresse.setNumeroMaison(updatedAdresse.getNumeroMaison());
-        adresse.setVille(updatedAdresse.getVille());
-        adresse.setStreet(updatedAdresse.getStreet());
-        adresse.setZipCode(updatedAdresse.getZipCode());
+        adresseDto.setPays(updatedAdresse.getPays());
+        adresseDto.setNumeroMaison(updatedAdresse.getNumeroMaison());
+        adresseDto.setVille(updatedAdresse.getVille());
+        adresseDto.setStreet(updatedAdresse.getStreet());
+        adresseDto.setZipCode(updatedAdresse.getZipCode());
 
         return AdresseDto.fromEntity(adresseRepository.save(AdresseDto.toEntity(adresseDto)));
     }

@@ -31,9 +31,9 @@ public interface AdresseApi {
     @GetMapping(value = APP_ROOT + "/adresses/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<AdresseDto> findAll();
 
-    @DeleteMapping(value = APP_ROOT + "/adresses/{idAdresse}")
-    void delete(@PathVariable("idAdresse") Long id);
-
     @PutMapping(value = APP_ROOT + "/adresses/{idAdresse}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AdresseDto update(@PathVariable("idAdresse") Long id, @RequestBody AdresseDto dto);
+
+    @DeleteMapping(value = APP_ROOT + "/adresses/{idAdresse}")
+    void delete(@PathVariable("idAdresse") Long id);
 }

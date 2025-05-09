@@ -89,16 +89,15 @@ public class PersonnelAdministratifServiceImpl implements PersonnelAdministratif
     @Override
     public PersonnelAdministratifDto update(Long id, PersonnelAdministratifDto updatedDto) {
         
-        PersonnelAdministratifDto dto1 = repository.findById(id)
+        PersonnelAdministratifDto dto = repository.findById(id)
                 .map(PersonnelAdministratifDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
-        PersonnelAdministratifDto personnelToUpdate = new PersonnelAdministratifDto();
 
-        personnelToUpdate.setRole(updatedDto.getRole());
-        personnelToUpdate.setAdresse(updatedDto.getAdresse());
+        dto.setRole(updatedDto.getRole());
+        dto.setAdresse(updatedDto.getAdresse());
 
-        return PersonnelAdministratifDto.fromEntity(repository.save(PersonnelAdministratifDto.toEntity(personnelToUpdate)));
+        return PersonnelAdministratifDto.fromEntity(repository.save(PersonnelAdministratifDto.toEntity(dto)));
     }
 
     @Override

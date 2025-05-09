@@ -53,15 +53,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public UtilisateurDto findByNom(String nom) {
+    public List<UtilisateurDto> findByNom(String nom) {
         if (!StringUtils.hasLength(nom)) {
             log.error("ID is null");
             return null;
         }
-        return repository.findByNom(nom)
+        return repository.findByNom(nom).stream()
                 .map(UtilisateurDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun Utilisateur trouve avec l'id "+nom+" dans la bdd", ErrorCodes.UTILISATEUR_NOT_FOUND));
-
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -77,15 +76,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .map(UtilisateurDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun utilisateur trouve avec l'id "+id+" dans la bdd", ErrorCodes.UTILISATEUR_NOT_FOUND));
 
-        UtilisateurDto utilisateurToUptade = new UtilisateurDto();
 
-        utilisateurToUptade.setTypeUtilisateur(updatedUtilisateurDto.getTypeUtilisateur());
-        utilisateurToUptade.setSexe(updatedUtilisateurDto.getSexe());
-        utilisateurToUptade.setNom(updatedUtilisateurDto.getNom());
-        utilisateurToUptade.setPrenom(updatedUtilisateurDto.getPrenom());
-        utilisateurToUptade.setDateDeNaissance(updatedUtilisateurDto.getDateDeNaissance());
+        dto.setTypeUtilisateur(updatedUtilisateurDto.getTypeUtilisateur());
+        dto.setSexe(updatedUtilisateurDto.getSexe());
+        dto.setNom(updatedUtilisateurDto.getNom());
+        dto.setPrenom(updatedUtilisateurDto.getPrenom());
+        dto.setDateDeNaissance(updatedUtilisateurDto.getDateDeNaissance());
 
-        return UtilisateurDto.fromEntity(repository.save(UtilisateurDto.toEntity(utilisateurToUptade)));
+        return UtilisateurDto.fromEntity(repository.save(UtilisateurDto.toEntity(dto)));
 
     }
 

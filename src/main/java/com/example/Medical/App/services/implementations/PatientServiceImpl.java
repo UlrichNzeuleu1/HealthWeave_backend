@@ -76,14 +76,13 @@ public class PatientServiceImpl implements PatientService {
                 .map(PatientDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
-        PatientDto patientToUptade = new PatientDto();
 
-        patientToUptade.setAllergies(updatedPatientDto.getAllergies());
-        patientToUptade.setAntecedentsMedicaux(updatedPatientDto.getAntecedentsMedicaux());
-        patientToUptade.setAdresse(updatedPatientDto.getAdresse());
-        patientToUptade.setAssurance(updatedPatientDto.getAssurance());
+        dto.setAllergies(updatedPatientDto.getAllergies());
+        dto.setAntecedentsMedicaux(updatedPatientDto.getAntecedentsMedicaux());
+        dto.setAdresse(updatedPatientDto.getAdresse());
+        dto.setAssurance(updatedPatientDto.getAssurance());
 
-        return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(patientToUptade)));
+        return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(dto)));
     }
 
     @Override

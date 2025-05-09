@@ -77,8 +77,7 @@ public class MedecinServiceImpl implements MedecinService {
 
     @Override
     public List<MedecinDto> findAll() {
-        return medecinRepository.findAll()
-                .stream()
+        return medecinRepository.findAll().stream()
                 .map(MedecinDto::fromEntity)
                 .collect(Collectors.toList());
     }
@@ -90,13 +89,11 @@ public class MedecinServiceImpl implements MedecinService {
                 .map(MedecinDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun medecin trouve avec l'id " +id+" en bdd",ErrorCodes.MEDECIN_NOT_FOUND));
 
-        MedecinDto medecinToUpdate = new MedecinDto();
+        dto.setAdresse(updatedMedecinDto.getAdresse());
+        dto.setSpecialite(updatedMedecinDto.getSpecialite());
+        dto.setRendezVousList(updatedMedecinDto.getRendezVousList());
 
-        medecinToUpdate.setAdresse(updatedMedecinDto.getAdresse());
-        medecinToUpdate.setSpecialite(updatedMedecinDto.getSpecialite());
-        medecinToUpdate.setRendezVousList(updatedMedecinDto.getRendezVousList());
-
-        return MedecinDto.fromEntity(medecinRepository.save(MedecinDto.toEntity(medecinToUpdate)));
+        return MedecinDto.fromEntity(medecinRepository.save(MedecinDto.toEntity(dto)));
     }
 
     @Override

@@ -78,13 +78,12 @@ public class AssuranceServiceImpl implements AssuranceService {
                 .map(AssuranceDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucune assurance trouve avec l'id "+id+ " dans la based de donnees"));
 
-        AssuranceDto assuranceToUpdate = new AssuranceDto();
 
-        assuranceToUpdate.setNomAssureur(updatedAssurance.getNomAssureur());
-        assuranceToUpdate.setNumeroPolice(updatedAssurance.getNumeroPolice());
-        assuranceToUpdate.setTypeCouverture(updatedAssurance.getTypeCouverture());
+        assuranceDto.setNomAssureur(updatedAssurance.getNomAssureur());
+        assuranceDto.setNumeroPolice(updatedAssurance.getNumeroPolice());
+        assuranceDto.setTypeCouverture(updatedAssurance.getTypeCouverture());
 
-        return AssuranceDto.fromEntity(assuranceRepository.save(AssuranceDto.toEntity(assuranceToUpdate)));
+        return AssuranceDto.fromEntity(assuranceRepository.save(AssuranceDto.toEntity(assuranceDto)));
     }
 
     @Override
