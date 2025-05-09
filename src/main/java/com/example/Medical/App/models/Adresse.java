@@ -31,7 +31,7 @@ public class Adresse {
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    @OneToMany(mappedBy = "adresse")
+    @OneToMany(mappedBy = "adresse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Medecin> medecins;
 
     @OneToMany(mappedBy = "adresse")
