@@ -19,13 +19,20 @@ public class RendezVousDto {
     private LocalDate dateRendezVous;
     private String heure;
     private String statut;
+    private String medecinSouhaite;
+    private String nomPatient;
+    private String prenomPatient;
+
 
     public static RendezVousDto fromEntity(RendezVous rendezVous){
         return RendezVousDto.builder()
                 .id(rendezVous.getId())
                 .heure(rendezVous.getHeure())
                 .statut(rendezVous.getStatut())
+                .medecinSouhaite(rendezVous.getMedecinSouhaite())
                 .dateRendezVous(rendezVous.getDateRendezVous())
+                .nomPatient(rendezVous.getNomPatient())
+                .prenomPatient(rendezVous.getPrenomPatient())
                 .build();
     }
     public static RendezVous toEntity(RendezVousDto dto){
@@ -34,6 +41,9 @@ public class RendezVousDto {
                 .dateRendezVous(dto.getDateRendezVous())
                 .statut(dto.getStatut())
                 .heure(dto.getHeure())
+                .medecinSouhaite(dto.getMedecinSouhaite())
+                .nomPatient(dto.getNomPatient())
+                .prenomPatient(dto.getPrenomPatient())
                 .build();
     }
 }

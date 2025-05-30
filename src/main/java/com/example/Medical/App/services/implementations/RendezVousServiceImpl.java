@@ -27,14 +27,14 @@ public class RendezVousServiceImpl implements RendezVousService {
     }
 
     @Override
-    public RendezVousDto save(RendezVousDto rendezVousDto) {
-        List<String> errors = RendezVousValidateur.validate(rendezVousDto);
+    public RendezVousDto save(RendezVousDto dto) {
+        List<String> errors = RendezVousValidateur.validate(dto);
 
         if (!errors.isEmpty()){
-           log.error("RendezVous is not valid {} ", rendezVousDto);
+           log.error("RendezVous is not valid {} ", dto);
            throw new InvalidEntityException("Le rendez-vous n'est pas valide ", ErrorCodes.RENDEZ_VOUS_NOT_VALID,errors);
         }
-        return RendezVousDto.fromEntity(repository.save(RendezVousDto.toEntity(rendezVousDto)));
+        return RendezVousDto.fromEntity(repository.save(RendezVousDto.toEntity(dto)));
     }
 
     @Override
@@ -68,17 +68,20 @@ public class RendezVousServiceImpl implements RendezVousService {
     }
 
     @Override
-    public RendezVousDto update(Long id, RendezVousDto updatedRendezVousDto) {
-        RendezVousDto dto = repository.findById(id)
+    public RendezVousDto update(Long id, RendezVousDto updatedDto) {
+        RendezVousDto rdv = repository.findById(id)
                 .map(RendezVousDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
 
-        dto.setDateRendezVous(updatedRendezVousDto.getDateRendezVous());
-        dto.setHeure(updatedRendezVousDto.getHeure());
-        dto.setStatut(updatedRendezVousDto.getStatut());
+        rdv.setDateRendezVous(updatedDto.getDateRendezVous());
+        rdv.setHeure(updatedDto.getHeure());
+        rdv.setStatut(updatedDto.getStatut());
+        rdv.setMedecinSouhaite(updatedDto.getMedecinSouhaite());
+        rdv.setNomPatient(updatedDto.getNomPatient());
+        rdv.setPrenomPatient(updatedDto.getPrenomPatient());
 
-        return RendezVousDto.fromEntity(repository.save(RendezVousDto.toEntity(dto)));
+        return RendezVousDto.fromEntity(repository.save(RendezVousDto.toEntity(rdv)));
 
     }
 

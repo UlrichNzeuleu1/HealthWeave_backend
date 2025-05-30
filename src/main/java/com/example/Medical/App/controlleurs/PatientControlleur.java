@@ -4,10 +4,12 @@ import com.example.Medical.App.controlleurs.api.PatientApi;
 import com.example.Medical.App.dto.PatientDto;
 import com.example.Medical.App.services.interfaces.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class PatientControlleur implements PatientApi {
 

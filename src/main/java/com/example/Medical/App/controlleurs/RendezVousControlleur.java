@@ -4,6 +4,7 @@ import com.example.Medical.App.controlleurs.api.RendezVousApi;
 import com.example.Medical.App.dto.RendezVousDto;
 import com.example.Medical.App.services.interfaces.RendezVousService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

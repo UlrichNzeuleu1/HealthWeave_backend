@@ -22,6 +22,10 @@ public class RendezVous {
     private LocalDate dateRendezVous;
     private String heure;
     private String statut;
+    private String medecinSouhaite;
+    private String nomPatient;
+    private String prenomPatient;
+
 
     @ManyToOne
     @JoinColumn(name = "consultation_id")

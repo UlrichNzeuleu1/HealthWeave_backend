@@ -79,7 +79,7 @@ public class AdresseServiceImpl implements AdresseService {
         if (id == null){
             log.error("L'id de l'addresse est null");
         }
-        adresseRepository.findById(id);
+        adresseRepository.deleteById(id);
     }
 
 }
