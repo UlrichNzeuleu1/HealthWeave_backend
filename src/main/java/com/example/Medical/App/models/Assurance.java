@@ -15,7 +15,7 @@ public class Assurance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nomAssureur;
     private String numeroPolice;
     private String typeCouverture;

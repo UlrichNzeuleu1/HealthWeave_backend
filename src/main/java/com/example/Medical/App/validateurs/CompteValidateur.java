@@ -13,6 +13,8 @@ public class CompteValidateur {
         if(compteDto == null){
             erreurs.add("L'email ne peut pas etre vide");
             erreurs.add("Vous devez renseigner un mot de passe");
+            erreurs.add("Vous devez renseigner le username");
+
 
             return erreurs;
         }
@@ -21,6 +23,8 @@ public class CompteValidateur {
             erreurs.add("L'email ne peut pas etre vide");
         if (!StringUtils.hasLength(compteDto.getPassword()))
             erreurs.add("Vous devez renseigner un mot de passe");
+        if (!StringUtils.hasLength(compteDto.getPassword()))
+            erreurs.add("Vous devez renseigner le username");
 
         return erreurs;
     }

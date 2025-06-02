@@ -27,6 +27,6 @@ public interface AssuranceApi {
     @PutMapping(value = APP_ROOT + "/assurances/{idAssurance}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto update (@PathVariable("idAssurance") Long id, @RequestBody AssuranceDto assuranceDto);
 
-    @DeleteMapping(value = APP_ROOT + "/assurances/delete/{idAssurance}")
+    @DeleteMapping(value = APP_ROOT + "/assurances/{idAssurance}")
     void delete (@PathVariable("idAssurance") Long id);
 }

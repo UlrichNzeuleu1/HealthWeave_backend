@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.print.attribute.standard.DateTimeAtCreation;
+import java.time.LocalDate;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,7 +22,9 @@ public class Compte {
 
     @Column(name = "email", unique = true)
     private String email;
+    private String username;
     private String password;
+    private LocalDate dateCreation;
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")

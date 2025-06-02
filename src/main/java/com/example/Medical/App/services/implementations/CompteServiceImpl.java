@@ -76,7 +76,9 @@ public class CompteServiceImpl implements CompteService {
                 .map(CompteDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun compte trouve avec l'id "+id+" dans la base de donnees ",ErrorCodes.COMPTE_NOT_FOUND));
 
+        compteDto.setUsername(updatedCompte.getUsername());
         compteDto.setEmail(updatedCompte.getEmail());
+        compteDto.setDateCreation(updatedCompte.getDateCreation());
         compteDto.setPassword(updatedCompte.getPassword());
 
         return CompteDto.fromEntity(compteRepository.save(CompteDto.toEntity(compteDto)));

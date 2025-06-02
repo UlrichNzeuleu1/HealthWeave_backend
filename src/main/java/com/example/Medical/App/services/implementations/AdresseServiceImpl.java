@@ -75,11 +75,9 @@ public class AdresseServiceImpl implements AdresseService {
 
     @Override
     public void delete(Long id) {
-
         if (id == null){
             log.error("L'id de l'addresse est null");
         }
         adresseRepository.deleteById(id);
     }
-
 }
