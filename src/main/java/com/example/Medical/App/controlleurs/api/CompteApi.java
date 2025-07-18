@@ -4,6 +4,7 @@ import com.example.Medical.App.dto.AssuranceDto;
 import com.example.Medical.App.dto.CompteDto;
 import io.swagger.annotations.Api;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface CompteApi {
     List<CompteDto> findAll ();
 
     @GetMapping(value = APP_ROOT + "/comptes/{email}/getByEmail", produces = MediaType.APPLICATION_JSON_VALUE)
-    CompteDto findByEmail(@PathVariable("email") String email);
+    ResponseEntity<List<CompteDto>> findByEmail(@PathVariable("email") String email);
 
     @PutMapping(value = APP_ROOT + "/comptes/{idCompte}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     CompteDto update (@PathVariable("idCompte") Long id, @RequestBody CompteDto compteDto);

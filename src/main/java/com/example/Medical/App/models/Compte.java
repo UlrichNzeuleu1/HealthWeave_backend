@@ -26,8 +26,8 @@ public class Compte {
     private String password;
     private LocalDate dateCreation;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur;
+//    @ManyToOne
+//    @JoinColumn(name = "utilisateur_id")
+//    private Utilisateur utilisateur;
 
 }
