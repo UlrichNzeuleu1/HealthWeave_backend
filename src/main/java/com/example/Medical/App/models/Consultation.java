@@ -22,7 +22,7 @@ public class Consultation {
     private String heure;
     private String statut;
 
-    @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RendezVous> rendezVousList;
+//    @OneToMany(mappedBy = "consultation")
+//    private List<RendezVous> rendezVousList;
 
 }

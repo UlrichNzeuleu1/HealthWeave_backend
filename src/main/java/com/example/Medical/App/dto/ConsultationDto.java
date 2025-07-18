@@ -21,9 +21,6 @@ public class ConsultationDto{
     private String heure;
     private String statut;
 
-
-
-
     // Mapping from Entity ---->> to Dto
 
     public static ConsultationDto fromEntity(Consultation consultation){

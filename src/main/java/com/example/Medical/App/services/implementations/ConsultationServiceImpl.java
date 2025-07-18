@@ -64,7 +64,16 @@ public class ConsultationServiceImpl implements ConsultationService {
             log.error("Le type de consultation est vide");
             return null;
         }
-        return consultationRepository.findByType(type)
+        return consultationRepository.findByTypeContainingIgnoreCase(type)
+                .stream()
+                .map(ConsultationDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ConsultationDto> findByTypeAndStatut(String type, String statut) {
+
+        return consultationRepository.findByTypeAndStatut(type, statut)
                 .stream()
                 .map(ConsultationDto::fromEntity)
                 .collect(Collectors.toList());
@@ -75,7 +84,6 @@ public class ConsultationServiceImpl implements ConsultationService {
         ConsultationDto dto = consultationRepository.findById(id)
                 .map(ConsultationDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucune consultation trouvee avec l'id "+id+ " dans la base de donnees", ErrorCodes.CONSULTATION_NOT_FOUND));
-
 
         dto.setDate(updatedConsultation.getDate());
         dto.setType(updatedConsultation.getType());

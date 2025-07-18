@@ -11,6 +11,7 @@ public interface ConsultationService {
     ConsultationDto findById (Long id);
     List<ConsultationDto> findAll ();
     List<ConsultationDto> findByType(String type);
+    List<ConsultationDto> findByTypeAndStatut(String type, String statut);
     ConsultationDto update (Long id, ConsultationDto consultationDto);
     void delete (Long id);
 }

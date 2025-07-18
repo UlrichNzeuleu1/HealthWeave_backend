@@ -26,6 +26,12 @@ public interface ConsultationApi {
     @GetMapping(value = APP_ROOT + "/consultations/{typeConsultation}/getByType", produces = MediaType.APPLICATION_JSON_VALUE)
     List<ConsultationDto> findByType(@PathVariable("typeConsultation") String type);
 
+    @GetMapping(value = APP_ROOT + "/consultations/{type}/getByTypeAndStatut", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<ConsultationDto> findByTypeAndStatut(
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) String statut
+    );
+
     @PutMapping(value = APP_ROOT + "/consultations/{idConsultation}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ConsultationDto update (@PathVariable("idConsultation") Long id, @RequestBody ConsultationDto consultationDto);
 

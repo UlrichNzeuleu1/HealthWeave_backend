@@ -41,6 +41,12 @@ public class ConsultationControlleur implements ConsultationApi {
     }
 
     @Override
+    public List<ConsultationDto> findByTypeAndStatut(String type, String statut) {
+        return consultationService.findByTypeAndStatut(type,statut);
+    }
+
+
+    @Override
     public ConsultationDto update(Long id, ConsultationDto consultationDto) {
         return consultationService.update(id,consultationDto);
     }
