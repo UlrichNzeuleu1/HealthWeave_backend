@@ -4,6 +4,7 @@ import com.example.Medical.App.controlleurs.api.CompteApi;
 import com.example.Medical.App.dto.CompteDto;
 import com.example.Medical.App.services.interfaces.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class CompteControlleur implements CompteApi {
     }
 
     @Override
-    public CompteDto findByEmail(String email) {
-        return compteService.findByEmail(email);
+    public ResponseEntity<List<CompteDto>> findByEmail(String email) {
+        List<CompteDto> compteDtoList =  compteService.findByEmail(email);
+        return ResponseEntity.ok(compteDtoList);
     }
 
     @Override
