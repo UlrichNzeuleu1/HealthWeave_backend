@@ -15,11 +15,13 @@ public class MedicamentDto {
     private Long id;
     private String nom;
     private String dosage;
+    private String datePeremption;
 
     public static MedicamentDto fromEntity(Medicament medicament){
         return MedicamentDto.builder()
                 .id(medicament.getId())
                 .nom(medicament.getNom())
+                .datePeremption(medicament.getDatePeremption())
                 .dosage(medicament.getDosage())
                 .build();
     }
@@ -28,6 +30,7 @@ public class MedicamentDto {
                 .id(dto.getId())
                 .dosage(dto.getDosage())
                 .nom(dto.getNom())
+                .datePeremption(dto.getDatePeremption())
                 .build();
     }
 }

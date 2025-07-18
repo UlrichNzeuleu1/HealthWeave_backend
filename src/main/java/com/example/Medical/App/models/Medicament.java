@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+@Table
 public class Medicament {
 
     @Id
@@ -18,15 +19,17 @@ public class Medicament {
     private Long id;
     private String nom;
     private String dosage;
+    private String datePeremption;
 
-    @ManyToMany(mappedBy = "medicaments", cascade =  CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DossierMedical> dossierMedicalList;
 
-    @ManyToMany(mappedBy = "medicaments",cascade =  CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Medecin> medecins;
-
-    @ManyToOne
-    @JoinColumn(name = "hopital_id")
-    private Hopital hopital;
+//    @ManyToMany(mappedBy = "medicaments", cascade =  CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<DossierMedical> dossierMedicalList;
+//
+//    @ManyToMany(mappedBy = "medicaments")
+//    private List<Medecin> medecins;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "hopital_id")
+//    private Hopital hopital;
 
 }
