@@ -4,41 +4,47 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table
 @Data
-@SuperBuilder
-
-public class Medecin extends Utilisateur{
+@Builder
+public class Medecin{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String specialite;
-
-    @OneToOne
-    @JoinColumn(name = "compte_id")
-    private Compte compte;
-
-    @ManyToOne
-    @JoinColumn(name = "adresse_id")
-    private Adresse adresse;
-
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<DossierMedical> dossierMedicalList;
-
-    @ManyToOne
-    @JoinColumn(name = "hopital_id")
-    private Hopital hopital;
+    private String nom;
+    private String prenom;
+    private String sexe;
+    private LocalDate dateDeNaissance;
+    private String email;
 
 
-    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RendezVous> rendezVousList;
+//    @OneToOne
+//    @JoinColumn(name = "compte_id")
+//    private Compte compte;
+
+//    @ManyToOne
+//    @JoinColumn(name = "adresse_id")
+//    private Adresse adresse;
+
+//    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<DossierMedical> dossierMedicalList;
+
+//    @ManyToOne
+//    @JoinColumn(name = "hopital_id")
+//    private Hopital hopital;
+
+
+//    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<RendezVous> rendezVousList;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(

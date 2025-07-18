@@ -32,7 +32,6 @@ public class MedecinServiceImpl implements MedecinService {
     public MedecinDto save(MedecinDto medecinDto) {
 
         List<String> errors = MedecinValidateur.validate(medecinDto);
-
         if(!errors.isEmpty()){
             log.error("Medecin is not valid {} ",medecinDto);
             throw new InvalidEntityException("L'entite medecin n'est pas valide ", ErrorCodes.MEDECIN_NOT_VALID,errors);
@@ -52,15 +51,14 @@ public class MedecinServiceImpl implements MedecinService {
     }
 
     @Override
-    public MedecinDto findByNom(String nom) {
+    public List<MedecinDto> findByNom(String nom) {
         if (!StringUtils.hasLength(nom)) {
             log.error("Nom is null");
             return null;
         }
-        return medecinRepository.findByNom(nom)
+        return medecinRepository.findByNomContainingIgnoreCase(nom).stream()
                 .map(MedecinDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun medecin trouve avec le nom "+nom+" dans la bdd", ErrorCodes.MEDECIN_NOT_FOUND));
-
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -72,7 +70,6 @@ public class MedecinServiceImpl implements MedecinService {
         return medecinRepository.findBySpecialite(specialite)
                 .map(MedecinDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun medecin trouve avec le nom "+specialite+" dans la bdd", ErrorCodes.MEDECIN_NOT_FOUND));
-
     }
 
     @Override
@@ -89,9 +86,14 @@ public class MedecinServiceImpl implements MedecinService {
                 .map(MedecinDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun medecin trouve avec l'id " +id+" en bdd",ErrorCodes.MEDECIN_NOT_FOUND));
 
-        dto.setAdresse(updatedMedecinDto.getAdresse());
+       // dto.setAdresse(updatedMedecinDto.getAdresse());
         dto.setSpecialite(updatedMedecinDto.getSpecialite());
-        dto.setRendezVousList(updatedMedecinDto.getRendezVousList());
+       // dto.setRendezVousList(updatedMedecinDto.getRendezVousList());
+        dto.setNom(updatedMedecinDto.getNom());
+        dto.setPrenom(updatedMedecinDto.getPrenom());
+        dto.setSexe(updatedMedecinDto.getSexe());
+        dto.setEmail(updatedMedecinDto.getEmail());
+        dto.setDateDeNaissance(updatedMedecinDto.getDateDeNaissance());
 
         return MedecinDto.fromEntity(medecinRepository.save(MedecinDto.toEntity(dto)));
     }

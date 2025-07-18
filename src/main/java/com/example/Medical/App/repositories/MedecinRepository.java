@@ -5,10 +5,11 @@ import com.example.Medical.App.dto.MedecinDto;
 import com.example.Medical.App.models.Medecin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MedecinRepository extends JpaRepository<Medecin,Long> {
-    Optional<Medecin> findByNom(String nom);
+    List<Medecin> findByNomContainingIgnoreCase(String nom);
 
     Optional<Medecin>findBySpecialite(String specialite);
 }

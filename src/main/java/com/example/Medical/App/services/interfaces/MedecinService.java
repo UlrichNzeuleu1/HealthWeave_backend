@@ -7,7 +7,7 @@ import java.util.List;
 public interface MedecinService {
     MedecinDto save (MedecinDto medecinDto);
     MedecinDto findById (Long id);
-    MedecinDto findByNom (String nom);
+    List<MedecinDto> findByNom (String nom);
     MedecinDto findBySpecialite (String specialite);
     List<MedecinDto> findAll ();
     MedecinDto update (Long id, MedecinDto medecinDto);

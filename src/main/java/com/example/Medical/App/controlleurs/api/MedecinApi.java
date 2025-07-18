@@ -20,7 +20,7 @@ public interface MedecinApi {
     MedecinDto findById (@PathVariable("idMedecin") Long id);
 
     @GetMapping(value = APP_ROOT + "/medecins/{nomMedecin}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
-    MedecinDto findByNom (@PathVariable("nomMedecin") String nom);
+    List<MedecinDto> findByNom (@PathVariable("nomMedecin") String nom);
 
     @GetMapping(value = APP_ROOT + "/medecins/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<MedecinDto> findAll ();

@@ -29,7 +29,7 @@ public class MedecinControlleur implements MedecinApi {
     }
 
     @Override
-    public MedecinDto findByNom(String nom) {
+    public List<MedecinDto> findByNom(String nom) {
         return medecinService.findByNom(nom);
     }
 

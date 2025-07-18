@@ -3,9 +3,12 @@ package com.example.Medical.App.dto;
 import com.example.Medical.App.models.Adresse;
 import com.example.Medical.App.models.Medecin;
 import com.example.Medical.App.models.RendezVous;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -13,26 +16,37 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class MedecinDto {
 
     private Long id;
     private String specialite;
-    private List<RendezVous> rendezVousList;
-    private Adresse adresse;
+    private String nom;
+    private String prenom;
+    private String sexe;
+    private LocalDate dateDeNaissance;
+    private String email;
 
     public static MedecinDto fromEntity(Medecin medecin){
         return MedecinDto.builder()
-                .adresse(medecin.getAdresse())
+
                 .specialite(medecin.getSpecialite())
-                .rendezVousList(medecin.getRendezVousList())
+                .nom(medecin.getNom())
+                .prenom(medecin.getPrenom())
+                .sexe(medecin.getSexe())
+                .email(medecin.getEmail())
+                .dateDeNaissance(medecin.getDateDeNaissance())
                 .build();
     }
 
     public static Medecin toEntity(MedecinDto dto){
         return Medecin.builder()
-                .adresse(dto.getAdresse())
                 .specialite(dto.getSpecialite())
-                .rendezVousList(dto.getRendezVousList())
+                .nom(dto.getNom())
+                .prenom(dto.getPrenom())
+                .sexe(dto.getSexe())
+                .dateDeNaissance(dto.getDateDeNaissance())
+                .email(dto.getEmail())
                 .build();
     }
 }
