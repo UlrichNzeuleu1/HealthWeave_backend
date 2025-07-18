@@ -54,15 +54,15 @@ public class MedicamentServiceImpl implements MedicamentService {
     }
 
     @Override
-    public MedicamentDto findByNom(String nom) {
+    public List<MedicamentDto> findByNom(String nom) {
         if (!StringUtils.hasLength(nom)){
             log.error("Nom is null");
             return null;
         }
-        return medicamentRepository.findByNom(nom)
+        return medicamentRepository.findByNomContainingIgnoreCase(nom)
+                .stream()
                 .map(MedicamentDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun medicament trouve avec le nom "+nom+" dans la bdd", ErrorCodes.MEDICAMENT_NOT_FOUND));
-
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -82,6 +82,7 @@ public class MedicamentServiceImpl implements MedicamentService {
 
         dto.setDosage(updatedMedicamentDto.getDosage());
         dto.setNom(updatedMedicamentDto.getNom());
+        dto.setDatePeremption(updatedMedicamentDto.getDatePeremption());
 
         return MedicamentDto.fromEntity(medicamentRepository.save(MedicamentDto.toEntity(dto)));
     }

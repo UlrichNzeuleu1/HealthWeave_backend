@@ -8,7 +8,7 @@ public interface MedicamentService {
 
     MedicamentDto save (MedicamentDto medicamentDto);
     MedicamentDto findById (Long id);
-    MedicamentDto findByNom (String nom);
+    List<MedicamentDto> findByNom (String nom);
     List<MedicamentDto> findAll ();
     MedicamentDto update (Long id, MedicamentDto medicamentDto);
     void delete (Long id);

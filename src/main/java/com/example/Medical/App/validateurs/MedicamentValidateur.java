@@ -17,6 +17,7 @@ public class MedicamentValidateur {
         if (dto == null){
             erreurs.add("Veuillez renseigner le nom");
             erreurs.add("Veuillez renseigner le dosage");
+            erreurs.add("Veuillez renseigner la date de peremption");
 
             return erreurs;
         }
@@ -24,6 +25,9 @@ public class MedicamentValidateur {
             erreurs.add("Veuillez renseigner le nom");
         if (!StringUtils.hasLength(dto.getDosage()))
             erreurs.add("Veuillez renseigner le dosage");
+        if (!StringUtils.hasLength(dto.getDosage()))
+            erreurs.add("Veuillez renseigner la date de peremption");
+
 
         return erreurs;
     }
