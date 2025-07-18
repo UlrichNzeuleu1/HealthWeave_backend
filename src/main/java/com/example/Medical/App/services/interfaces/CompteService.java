@@ -9,7 +9,7 @@ public interface CompteService {
     CompteDto save (CompteDto compteDto);
     CompteDto findById (Long id);
     List<CompteDto> findAll ();
-    CompteDto findByEmail(String email);
+    List<CompteDto> findByEmail(String email);
     CompteDto update (Long id, CompteDto compteDto);
     void delete (Long id);
 }

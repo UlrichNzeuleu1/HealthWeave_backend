@@ -59,14 +59,15 @@ public class CompteServiceImpl implements CompteService {
     }
 
     @Override
-    public CompteDto findByEmail(String email) {
+    public List<CompteDto> findByEmail(String email) {
         if (!StringUtils.hasLength(email)){
             log.error("Email is null");
             return null;
         }
-        return compteRepository.findByEmail(email)
+        return compteRepository.findByEmailContainingIgnoreCase(email).stream()
                 .map(CompteDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun article trouve avec l'email "+email+" dans la base de donnees", ErrorCodes.COMPTE_NOT_FOUND));
+                .collect(Collectors.toList());
+                //.orElseThrow(()-> new EntityNotFoundException("Aucun article trouve avec l'email "+email+" dans la base de donnees", ErrorCodes.COMPTE_NOT_FOUND));
     }
 
     @Override
