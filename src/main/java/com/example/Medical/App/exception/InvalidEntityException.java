@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.List;
 
 
-// cette classe nous permettra de lever l'exception lorqu'on essaira d'enregistrer
+// cette classe nous permettra de lever l'exception lorqu'on essaiera d'enregistrer
 // une entite qui n'est pas valide dans la BDD'
 
 public class InvalidEntityException extends RuntimeException{
