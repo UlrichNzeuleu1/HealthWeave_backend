@@ -29,6 +29,11 @@ public class DossierMedicalControlleur implements DossierMedicalApi {
     }
 
     @Override
+    public List<DossierMedicalDto> findByTraitements(String traitement) {
+        return dossierMedicalService.findByTraitements(traitement);
+    }
+
+    @Override
     public List<DossierMedicalDto> findAll() {
         return dossierMedicalService.findAll();
     }

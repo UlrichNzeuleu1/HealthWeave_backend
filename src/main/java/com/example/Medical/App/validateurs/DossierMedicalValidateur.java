@@ -22,6 +22,10 @@ public class DossierMedicalValidateur {
 
         if (!StringUtils.hasLength(dto.getHistoriqueMedical()))
             erreurs.add("Veuillez renseigner l'historique medical");
+        if (!StringUtils.hasLength(dto.getTraitements()))
+            erreurs.add("Veuillez renseigner le traitement");
+        if (!StringUtils.hasLength(dto.getPrescriptions()))
+            erreurs.add("Veuillez renseigner la prescriptions");
 
     return erreurs;
     }

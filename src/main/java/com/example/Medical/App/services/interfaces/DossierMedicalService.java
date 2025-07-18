@@ -9,6 +9,7 @@ public interface DossierMedicalService {
     DossierMedicalDto save (DossierMedicalDto dossierMedicalDto);
     DossierMedicalDto findById (Long id);
     List<DossierMedicalDto> findAll ();
+    List<DossierMedicalDto> findByTraitements (String traitements);
     DossierMedicalDto update (Long id, DossierMedicalDto dossierMedicalDto);
     void delete (Long id);
 }

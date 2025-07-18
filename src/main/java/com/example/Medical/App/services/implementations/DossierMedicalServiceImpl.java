@@ -61,6 +61,17 @@ public class DossierMedicalServiceImpl implements DossierMedicalService {
     }
 
     @Override
+    public List<DossierMedicalDto> findByTraitements(String traitements) {
+        if (!StringUtils.hasLength(traitements)){
+            log.error("DossierMedical traitement field is null");
+            return null;
+        }
+        return repository.findByTraitementsContainingIgnoreCase(traitements).stream()
+                .map(DossierMedicalDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public DossierMedicalDto update(Long id, DossierMedicalDto updatedDossierMedical) {
 
 

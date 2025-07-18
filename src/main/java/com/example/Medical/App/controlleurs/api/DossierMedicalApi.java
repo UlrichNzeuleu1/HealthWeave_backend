@@ -16,8 +16,11 @@ public interface DossierMedicalApi {
     @PostMapping(value = APP_ROOT + "/dossierMedicals/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     DossierMedicalDto save (@RequestBody DossierMedicalDto dossierMedicalDto);
 
-    @GetMapping(value = APP_ROOT + "/dossierMedicals/{idDossierMedical}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/dossierMedicals/{idDossierMedical}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     DossierMedicalDto findById (@PathVariable("idDossierMedical") Long id);
+
+    @GetMapping(value = APP_ROOT + "/dossierMedicals/{traitement}/getByTraitement", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<DossierMedicalDto> findByTraitements (@PathVariable("traitement") String traitement);
 
     @GetMapping(value = APP_ROOT + "/dossierMedicals/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<DossierMedicalDto> findAll ();

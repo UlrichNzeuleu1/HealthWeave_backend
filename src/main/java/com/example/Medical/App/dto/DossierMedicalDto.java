@@ -14,8 +14,8 @@ public class DossierMedicalDto {
 
     private Long id;
     private String historiqueMedical;
-    private List<String> traitements;
-    private List<String> prescriptions;
+    private String traitements;
+    private String prescriptions;
 
     // Mapping from Dto ----> to Entity
     public static DossierMedicalDto fromEntity(DossierMedical dossierMedical){
