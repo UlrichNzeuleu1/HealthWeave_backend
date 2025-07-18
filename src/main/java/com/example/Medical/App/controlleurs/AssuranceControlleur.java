@@ -4,6 +4,7 @@ import com.example.Medical.App.controlleurs.api.AssuranceApi;
 import com.example.Medical.App.dto.AssuranceDto;
 import com.example.Medical.App.services.interfaces.AssuranceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class AssuranceControlleur implements AssuranceApi {
     }
 
     @Override
-    public AssuranceDto findByNomAssureur(String nomAssureur) {
-        return assuranceService.findByNomAssureur(nomAssureur);
+    public ResponseEntity<List<AssuranceDto>> findByNom(String nom) {
+        List<AssuranceDto>  assuranceDtoList = assuranceService.findByNom(nom);
+        return ResponseEntity.ok(assuranceDtoList);
     }
 
     @Override

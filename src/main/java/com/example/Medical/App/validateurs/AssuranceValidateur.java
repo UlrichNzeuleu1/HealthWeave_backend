@@ -19,7 +19,7 @@ public class AssuranceValidateur {
             return erreurs;
         }
 
-        if (!StringUtils.hasLength(assuranceDto.getNomAssureur()))
+        if (!StringUtils.hasLength(assuranceDto.getNom()))
             erreurs.add("Veuillez renseigner le nom de l'assureur");
         if (!StringUtils.hasLength(assuranceDto.getNumeroPolice()))
             erreurs.add("Veuillez renseigner le numero de police");

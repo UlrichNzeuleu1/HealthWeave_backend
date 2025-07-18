@@ -11,7 +11,7 @@ import lombok.*;
 public class AssuranceDto {
 
     private Long id;
-    private String nomAssureur;
+    private String nom;
     private String numeroPolice;
     private String typeCouverture;
 
@@ -21,7 +21,7 @@ public class AssuranceDto {
     public static AssuranceDto fromEntity(Assurance assurance){
         return AssuranceDto.builder()
                 .id(assurance.getId())
-                .nomAssureur(assurance.getNomAssureur())
+                .nom(assurance.getNom())
                 .numeroPolice(assurance.getNumeroPolice())
                 .typeCouverture(assurance.getTypeCouverture())
                 .build();
@@ -32,7 +32,7 @@ public class AssuranceDto {
     public static Assurance toEntity(AssuranceDto dto){
         return Assurance.builder()
                 .id(dto.getId())
-                .nomAssureur(dto.getNomAssureur())
+                .nom(dto.getNom())
                 .numeroPolice(dto.getNumeroPolice())
                 .typeCouverture(dto.getTypeCouverture())
                 .build();

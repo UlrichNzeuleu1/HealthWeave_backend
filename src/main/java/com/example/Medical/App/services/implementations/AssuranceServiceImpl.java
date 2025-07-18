@@ -4,17 +4,14 @@ import com.example.Medical.App.dto.AssuranceDto;
 import com.example.Medical.App.exception.EntityNotFoundException;
 import com.example.Medical.App.exception.ErrorCodes;
 import com.example.Medical.App.exception.InvalidEntityException;
-import com.example.Medical.App.models.Assurance;
 import com.example.Medical.App.repositories.AssuranceRepository;
 import com.example.Medical.App.services.interfaces.AssuranceService;
 import com.example.Medical.App.validateurs.AssuranceValidateur;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,14 +58,16 @@ public class AssuranceServiceImpl implements AssuranceService {
     }
 
     @Override
-    public AssuranceDto findByNomAssureur(String nomAssureur) {
-        if (!StringUtils.hasLength(nomAssureur)){
+    public List<AssuranceDto> findByNom(String nom) {
+        if (!StringUtils.hasLength(nom)){
             log.error("Assurance name is null");
             return null;
         }
-        return assuranceRepository.findByNomAssureur(nomAssureur)
+        return assuranceRepository.findByNomContainingIgnoreCase(nom).stream()
                 .map(AssuranceDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucune assurance trouvee dans la base de donnees avec le nom "+nomAssureur, ErrorCodes.ASSURANCE_NOT_FOUND));
+                .collect(Collectors.toList());
+
+                //.orElseThrow(()-> new EntityNotFoundException("Aucune assurance trouvee dans la base de donnees avec le nom "+nom, ErrorCodes.ASSURANCE_NOT_FOUND));
     }
 
     @Override
@@ -79,7 +78,7 @@ public class AssuranceServiceImpl implements AssuranceService {
                 .orElseThrow(()-> new EntityNotFoundException("Aucune assurance trouve avec l'id "+id+ " dans la based de donnees"));
 
 
-        assuranceDto.setNomAssureur(updatedAssurance.getNomAssureur());
+        assuranceDto.setNom(updatedAssurance.getNom());
         assuranceDto.setNumeroPolice(updatedAssurance.getNumeroPolice());
         assuranceDto.setTypeCouverture(updatedAssurance.getTypeCouverture());
 

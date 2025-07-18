@@ -3,6 +3,7 @@ package com.example.Medical.App.controlleurs.api;
 import com.example.Medical.App.dto.AssuranceDto;
 import io.swagger.annotations.Api;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public interface AssuranceApi {
     @GetMapping(value = APP_ROOT + "/assurances/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<AssuranceDto> findAll ();
 
-    @GetMapping(value = APP_ROOT + "/assurances/{nomAssureur}/getByName", produces = MediaType.APPLICATION_JSON_VALUE)
-    AssuranceDto findByNomAssureur(@PathVariable("nomAssureur") String nomAssureur);
+    @GetMapping(value = APP_ROOT + "/assurances/{nom}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<AssuranceDto>> findByNom(@PathVariable String nom);
 
     @PutMapping(value = APP_ROOT + "/assurances/{idAssurance}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     AssuranceDto update (@PathVariable("idAssurance") Long id, @RequestBody AssuranceDto assuranceDto);
