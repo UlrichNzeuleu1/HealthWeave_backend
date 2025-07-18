@@ -20,10 +20,10 @@ public interface PersonnelAdministratifApi {
     PersonnelAdministratifDto findById (@PathVariable("idPersonnel") Long id);
 
     @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{nomPersonnel}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
-    PersonnelAdministratifDto findByNom (@PathVariable("nomPersonnel") String nom);
+    List<PersonnelAdministratifDto> findByNom (@PathVariable("nomPersonnel") String nom);
 
     @GetMapping(value = APP_ROOT + "/personnelAdministratifs/{role}", produces = MediaType.APPLICATION_JSON_VALUE)
-    PersonnelAdministratifDto findByRole (@PathVariable("role") String role);
+    List<PersonnelAdministratifDto> findByRole (@PathVariable("role") String role);
 
     @GetMapping(value = APP_ROOT + "/personnelAdministratifs/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<PersonnelAdministratifDto> findAll ();

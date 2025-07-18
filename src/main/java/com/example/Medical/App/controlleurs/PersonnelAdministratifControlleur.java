@@ -30,12 +30,12 @@ public class PersonnelAdministratifControlleur implements PersonnelAdministratif
     }
 
     @Override
-    public PersonnelAdministratifDto findByNom(String nom) {
+    public List<PersonnelAdministratifDto> findByNom(String nom) {
         return administratifService.findByNom(nom);
     }
 
     @Override
-    public PersonnelAdministratifDto findByRole(String role) {
+    public List<PersonnelAdministratifDto> findByRole(String role) {
         return administratifService.findByRole(role);
     }
 

@@ -5,26 +5,28 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@SuperBuilder
-public class PersonnelAdministratif extends Utilisateur {
+@Builder
+public class PersonnelAdministratif {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String adresse;
+    private String nom;
     private String role;
+    private String telephone;
 
-    @ManyToOne
-    @JoinColumn(name = "adresse_id")
-    private Adresse adresse;
-
-    @ManyToOne
-    @JoinColumn(name = "hopital_id")
-    private Hopital hopital;
+//    @ManyToOne
+//    @JoinColumn(name = "adresse_id")
+//    private Adresse adresse;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "hopital_id")
+//    private Hopital hopital;
 
 }

@@ -56,26 +56,29 @@ public class PersonnelAdministratifServiceImpl implements PersonnelAdministratif
     }
 
     @Override
-    public PersonnelAdministratifDto findByNom(String nom) {
+    public List<PersonnelAdministratifDto> findByNom(String nom) {
         if (!StringUtils.hasLength(nom)) {
             log.error("Nom is empty");
             return null;
         }
-        return repository.findByNom(nom)
+        return repository.findByNomContainingIgnoreCase(nom).stream()
                 .map(PersonnelAdministratifDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec le nom "+nom+" dans la bdd", ErrorCodes.PERSONNEL_ADMINISTRATIF_NOT_FOUND));
+                .collect(Collectors.toList());
+        //.orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec le nom "+nom+" dans la bdd", ErrorCodes.PERSONNEL_ADMINISTRATIF_NOT_FOUND));
 
     }
 
     @Override
-    public PersonnelAdministratifDto findByRole(String role) {
+    public List<PersonnelAdministratifDto> findByRole(String role) {
         if (!StringUtils.hasLength(role)) {
             log.error("role is empty");
             return null;
         }
-        return repository.findByRole(role)
+        return repository.findByRoleContainingIgnoreCase(role)
+                .stream()
                 .map(PersonnelAdministratifDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun personnel administratif trouve avec le nom "+role+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
+                .collect(Collectors.toList());
+                //.orElseThrow(()-> new EntityNotFoundException("Aucun personnel administratif trouve avec le nom "+role+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
     }
 
@@ -96,6 +99,7 @@ public class PersonnelAdministratifServiceImpl implements PersonnelAdministratif
 
         dto.setRole(updatedDto.getRole());
         dto.setAdresse(updatedDto.getAdresse());
+        dto.setTelephone(updatedDto.getTelephone());
 
         return PersonnelAdministratifDto.fromEntity(repository.save(PersonnelAdministratifDto.toEntity(dto)));
     }
