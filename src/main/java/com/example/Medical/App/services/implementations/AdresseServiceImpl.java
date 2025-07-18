@@ -10,7 +10,9 @@ import com.example.Medical.App.services.interfaces.AdresseService;
 import com.example.Medical.App.validateurs.AdresseValidateur;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,5 +81,16 @@ public class AdresseServiceImpl implements AdresseService {
             log.error("L'id de l'addresse est null");
         }
         adresseRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AdresseDto> findByStreet(String street) {
+        if (!StringUtils.hasLength(street)){
+            log.error("Adresse street is null");
+            return null;
+        }
+        return adresseRepository.findByStreetContainingIgnoreCase(street).stream()
+                .map(AdresseDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }

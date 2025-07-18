@@ -24,20 +24,17 @@ public class Adresse {
     private String ville;
     private String pays;
 
-    @OneToOne(mappedBy = "adresse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Hopital hopital;
+//    @ManyToOne
+//    @JoinColumn(name = "utilisateur_id")
+//    private Utilisateur utilisateur;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur;
+//    @OneToMany(mappedBy = "adresse")
+//    private List<Medecin> medecins;
 
-    @OneToMany(mappedBy = "adresse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Medecin> medecins;
+//    @OneToMany(mappedBy = "adresse")
+//    private List<Patient> patients;
 
-    @OneToMany(mappedBy = "adresse")
-    private List<Patient> patients;
-
-    @OneToMany(mappedBy = "adresse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PersonnelAdministratif> personnelAdministratifs;
+//    @OneToMany(mappedBy = "adresse")
+//    private List<PersonnelAdministratif> personnelAdministratifs;
 
 }

@@ -2,8 +2,10 @@ package com.example.Medical.App.controlleurs;
 
 import com.example.Medical.App.controlleurs.api.AdresseApi;
 import com.example.Medical.App.dto.AdresseDto;
+import com.example.Medical.App.dto.AssuranceDto;
 import com.example.Medical.App.services.interfaces.AdresseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +21,6 @@ public class AdresseControlleur implements AdresseApi {
         this.adresseService = adresseService;
     }
 
-
     @Override
     public AdresseDto save(AdresseDto dto) {
         return adresseService.save(dto);
@@ -33,6 +34,12 @@ public class AdresseControlleur implements AdresseApi {
     @Override
     public List<AdresseDto> findAll() {
         return adresseService.findAll();
+    }
+
+    @Override
+    public ResponseEntity<List<AdresseDto>> findByStreet(String street) {
+        List<AdresseDto> adresseDtoList = adresseService.findByStreet(street);
+        return ResponseEntity.ok(adresseDtoList);
     }
 
     @Override
