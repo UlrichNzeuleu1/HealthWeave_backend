@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+@Table
 public class Hopital {
 
     @Id
@@ -17,20 +18,6 @@ public class Hopital {
     private Long id;
     private String nom;
     private String numeroTelephone;
+    private String adresseHopital;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "adresse_id")
-    private Adresse adresse;
-
-    @OneToMany(mappedBy = "hopital", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Medecin> medecins;
-
-    @OneToMany(mappedBy = "hopital", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RendezVous> rendezVousList;
-
-    @OneToMany(mappedBy = "hopital", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PersonnelAdministratif> personnelAdministratifs;
-
-    @OneToMany(mappedBy = "hopital", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Medicament> medicaments;
 }

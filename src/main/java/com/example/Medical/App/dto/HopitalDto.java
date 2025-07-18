@@ -14,14 +14,14 @@ public class HopitalDto {
     private Long id;
     private String nom;
     private String numeroTelephone;
-    private Adresse adresse;
+    private String adresseHopital;
 
 
     public static HopitalDto fromEntity(Hopital hopital){
         return HopitalDto.builder()
                 .id(hopital.getId())
                 .nom(hopital.getNom())
-                .adresse(hopital.getAdresse())
+                .adresseHopital(hopital.getAdresseHopital())
                 .numeroTelephone(hopital.getNumeroTelephone())
                 .build();
     }
@@ -30,7 +30,7 @@ public class HopitalDto {
         return Hopital.builder()
                 .id(dto.getId())
                 .nom(dto.getNom())
-                .adresse(dto.getAdresse())
+                .adresseHopital(dto.getAdresseHopital())
                 .numeroTelephone(dto.getNumeroTelephone())
                 .build();
     }

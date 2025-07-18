@@ -8,7 +8,7 @@ import java.util.List;
 public interface HopitalService {
     HopitalDto save (HopitalDto hopitalDto);
     HopitalDto findById (Long id);
-    HopitalDto findByNom (String nom);
+    List<HopitalDto> findByNom (String nom);
     List<HopitalDto> findAll ();
     HopitalDto update (Long id, HopitalDto hopitalDto);
     void delete (Long id);

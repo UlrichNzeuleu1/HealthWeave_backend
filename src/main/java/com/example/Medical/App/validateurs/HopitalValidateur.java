@@ -14,6 +14,7 @@ public class HopitalValidateur {
         if (dto == null){
             erreurs.add("Veuillez renseigner le nom");
             erreurs.add("Veuillez renseigner le numero de telephone");
+            erreurs.add("Veuillez renseigner l'adresse de l'hopital");
 
             return erreurs;
         }
@@ -22,6 +23,9 @@ public class HopitalValidateur {
             erreurs.add("Veuillez renseigner le nom");
         if (!StringUtils.hasLength(dto.getNumeroTelephone()))
             erreurs.add("Veuillez renseigner le numero de telephone");
+        if (!StringUtils.hasLength(dto.getAdresseHopital()))
+            erreurs.add("Veuillez renseigner l'adresse de l'hopital");
+
 
         return erreurs;
     }

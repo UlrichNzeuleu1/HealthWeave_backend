@@ -1,6 +1,5 @@
 package com.example.Medical.App.controlleurs.api;
 
-import com.example.Medical.App.dto.FactureDto;
 import com.example.Medical.App.dto.HopitalDto;
 import io.swagger.annotations.Api;
 import org.springframework.http.MediaType;
@@ -20,13 +19,13 @@ public interface HopitalApi {
     HopitalDto findById (@PathVariable("idHopital") Long id);
 
     @GetMapping(value = APP_ROOT + "/hopitals/{nomHopital}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
-    HopitalDto findByNom (@PathVariable("nomHopital") String nom);
+    List<HopitalDto> findByNom (@PathVariable("nomHopital") String nom);
 
     @GetMapping(value = APP_ROOT + "/hopitals/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<HopitalDto> findAll ();
 
     @PutMapping(value = APP_ROOT + "/hopitals/{idHopital}/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    HopitalDto update (@PathVariable("idFacture") Long id, @RequestBody HopitalDto hopitalDto);
+    HopitalDto update (@PathVariable("idHopital") Long id, @RequestBody HopitalDto hopitalDto);
 
     @DeleteMapping(value = APP_ROOT + "/hopitals/delete/{idHopital}")
     void delete (@PathVariable("idHopital") Long id);

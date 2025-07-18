@@ -51,15 +51,17 @@ public class HopitalServiceImpl implements HopitalService {
     }
 
     @Override
-    public HopitalDto findByNom(String nom) {
+    public List<HopitalDto> findByNom(String nom) {
 
         if (!StringUtils.hasLength(nom)){
             log.error("Hopital name is null");
             return null;
         }
-        return hopitalRepository.findByNom(nom)
+        return hopitalRepository.findByNomContainingIgnoreCase(nom)
+                .stream()
                 .map(HopitalDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun hopital trouve avec le nom "+nom+" dans la base de donnees", ErrorCodes.HOPITAL_NOT_FOUND));
+                .collect(Collectors.toList());
+                //.orElseThrow(()-> new EntityNotFoundException("Aucun hopital trouve avec le nom "+nom+" dans la base de donnees", ErrorCodes.HOPITAL_NOT_FOUND));
     }
 
     @Override
@@ -77,8 +79,8 @@ public class HopitalServiceImpl implements HopitalService {
                 .map(HopitalDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun hopital trouve avec l'id " +id+" en bdd",ErrorCodes.HOPITAL_NOT_FOUND));
 
-        dto.setAdresse(updatedHopitalDto.getAdresse());
         dto.setNom(updatedHopitalDto.getNom());
+        dto.setAdresseHopital(updatedHopitalDto.getAdresseHopital());
         dto.setNumeroTelephone(updatedHopitalDto.getNumeroTelephone());
 
         return HopitalDto.fromEntity(hopitalRepository.save(HopitalDto.toEntity(dto)));
@@ -86,6 +88,9 @@ public class HopitalServiceImpl implements HopitalService {
 
     @Override
     public void delete(Long id) {
-
+        if (id == null){
+            log.error("ID is null");
+            }
+        hopitalRepository.deleteById(id);
     }
 }

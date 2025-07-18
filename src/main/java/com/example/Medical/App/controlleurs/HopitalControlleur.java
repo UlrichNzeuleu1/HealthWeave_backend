@@ -29,7 +29,7 @@ public class HopitalControlleur implements HopitalApi {
     }
 
     @Override
-    public HopitalDto findByNom(String nom) {
+    public List<HopitalDto> findByNom(String nom) {
         return hopitalService.findByNom(nom);
     }
 
