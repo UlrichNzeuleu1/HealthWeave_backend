@@ -3,6 +3,7 @@ package com.example.Medical.App.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -16,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@SuperBuilder
+@Builder
 public class  Utilisateur {
 
     @Id
@@ -32,8 +33,4 @@ public class  Utilisateur {
     @Column(name = "email", unique = true)
     private String email;
     private String motDePasse;
-
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Compte> comptes;
-
 }
