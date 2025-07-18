@@ -26,7 +26,7 @@ public class RendezVousValidateur {
             erreurs.add("Veuillez renseigner la date du rendez-vous");
 
         if (!StringUtils.hasLength(dto.getHeure()))
-            erreurs.add("Veuillez renseigner l'heure' du rendez-vous");
+            erreurs.add("Veuillez renseigner l'heure du rendez-vous");
 
         if (!StringUtils.hasLength(dto.getStatut()))
             erreurs.add("Veuillez renseigner le statut du rendez-vous");

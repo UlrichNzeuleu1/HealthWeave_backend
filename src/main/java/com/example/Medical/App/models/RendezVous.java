@@ -27,20 +27,20 @@ public class RendezVous {
     private String prenomPatient;
 
 
-    @ManyToOne
-    @JoinColumn(name = "consultation_id")
-    private Consultation consultation;
+//    @ManyToOne
+//    @JoinColumn(name = "consultation_id")
+//    private Consultation consultation;
 
-    @ManyToOne
-    @JoinColumn(name = "hopital_id")
-    private Hopital hopital;
+//    @ManyToOne
+//    @JoinColumn(name = "hopital_id")
+//    private Hopital hopital;
 
-    @ManyToOne
-    @JoinColumn(name = "medecin_id")
-    private Medecin medecin;
-
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
+//    @ManyToOne
+//    @JoinColumn(name = "medecin_id")
+//    private Medecin medecin;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "patient_id")
+//    private Patient patient;
 
 }
