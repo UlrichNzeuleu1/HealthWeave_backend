@@ -11,6 +11,7 @@ import com.example.Medical.App.validateurs.FactureValidateur;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collection;
 import java.util.List;
@@ -58,6 +59,19 @@ public class FactureServiceImpl implements FactureService {
     }
 
     @Override
+    public List<FactureDto> findByStatutPaiementContainingIgnoreCase(String statutPaiement) {
+
+        if (!StringUtils.hasLength(statutPaiement)){
+            log.error("Facture statutPaiement is null");
+            return null;
+        }
+        return factureRepository.findByStatutPaiementContainingIgnoreCase(statutPaiement)
+                .stream()
+                .map(FactureDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public FactureDto update(Long id, FactureDto updatedFactureDto) {
 
         FactureDto dto = factureRepository.findById(id)
@@ -73,9 +87,9 @@ public class FactureServiceImpl implements FactureService {
 
     @Override
     public void delete(Long id) {
-        if (id == null)
+        if (id == null) {
             log.error("ID is null");
-
-        factureRepository.findById(id);
+        }
+        factureRepository.deleteById(id);
     }
 }

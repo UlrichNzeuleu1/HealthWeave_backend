@@ -24,8 +24,13 @@ public class FactureControlleur implements FactureApi {
     }
 
     @Override
-    public FactureDto findById(Long id) {
-        return factureService.findById(id);
+    public FactureDto findById(Long idFacture) {
+        return factureService.findById(idFacture);
+    }
+
+    @Override
+    public List<FactureDto> findByStatutPaiement(String statutPaiement) {
+        return factureService.findByStatutPaiementContainingIgnoreCase(statutPaiement);
     }
 
     @Override

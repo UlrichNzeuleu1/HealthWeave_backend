@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table
 @Builder
 public class Facture {
 
@@ -20,8 +21,8 @@ public class Facture {
     private LocalDate dateEmission;
     private String statutPaiement;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private Patient patient;
+//    @ManyToOne
+//    @JoinColumn(name = "patient_id")
+//    private Patient patient;
 
 }

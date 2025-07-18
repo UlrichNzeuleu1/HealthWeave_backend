@@ -1,6 +1,7 @@
 package com.example.Medical.App.controlleurs.api;
 
 import com.example.Medical.App.dto.AssuranceDto;
+import com.example.Medical.App.dto.DossierMedicalDto;
 import com.example.Medical.App.dto.FactureDto;
 import io.swagger.annotations.Api;
 import org.springframework.http.MediaType;
@@ -17,7 +18,10 @@ public interface FactureApi {
     FactureDto save (@RequestBody FactureDto factureDto);
 
     @GetMapping(value = APP_ROOT + "/factures/{idFacture}", produces = MediaType.APPLICATION_JSON_VALUE)
-    FactureDto findById (@PathVariable("idFacture") Long id);
+    FactureDto findById (@PathVariable("idFacture") Long idFacture);
+
+    @GetMapping(value = APP_ROOT + "/factures/{statutPaiement}/getByStatutPaiement", produces = MediaType.APPLICATION_JSON_VALUE)
+    List<FactureDto> findByStatutPaiement (@PathVariable("statutPaiement") String statutPaiement);
 
     @GetMapping(value = APP_ROOT + "/factures/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<FactureDto> findAll ();
