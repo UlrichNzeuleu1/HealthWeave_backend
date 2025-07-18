@@ -79,8 +79,13 @@ public class PatientServiceImpl implements PatientService {
 
         dto.setAllergies(updatedPatientDto.getAllergies());
         dto.setAntecedentsMedicaux(updatedPatientDto.getAntecedentsMedicaux());
-        dto.setAdresse(updatedPatientDto.getAdresse());
-        dto.setAssurance(updatedPatientDto.getAssurance());
+        dto.setAdressePatient(updatedPatientDto.getAdressePatient());
+        dto.setNom(updatedPatientDto.getNom());
+        dto.setPrenom(updatedPatientDto.getPrenom());
+        dto.setDateDeNaissance(updatedPatientDto.getDateDeNaissance());
+        dto.setSexe(updatedPatientDto.getSexe());
+
+       //dto.setAssurance(updatedPatientDto.getAssurance());
 
         return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(dto)));
     }
