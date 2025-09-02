@@ -1,18 +1,19 @@
-package com.example.Medical.App.service;
+package com.example.Medical.App.services.implementations;
 
 import com.example.Medical.App.dto.AdresseDto;
 import com.example.Medical.App.exception.EntityNotFoundException;
 import com.example.Medical.App.exception.InvalidEntityException;
 import com.example.Medical.App.models.Adresse;
 import com.example.Medical.App.repositories.AdresseRepository;
-import com.example.Medical.App.services.implementations.AdresseServiceImpl;
 import com.example.Medical.App.validateurs.AdresseValidateur;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
