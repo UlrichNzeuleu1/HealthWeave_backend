@@ -1,5 +1,6 @@
 package com.example.Medical.App.controlleurs.api;
 
+import com.example.Medical.App.dto.FactureDto;
 import com.example.Medical.App.dto.RendezVousDto;
 import com.example.Medical.App.dto.UtilisateurDto;
 import io.swagger.annotations.Api;

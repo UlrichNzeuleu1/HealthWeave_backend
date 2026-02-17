@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class PatientServiceImpl implements PatientService {
 
+    @Autowired
     private final PatientRepository patientRepository;
 
     @Autowired
@@ -70,20 +71,20 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto update(Long id, PatientDto updatedPatientDto) {
+    public PatientDto update(Long id, PatientDto updatedPatient) {
 
         PatientDto dto = patientRepository.findById(id)
                 .map(PatientDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
 
-        dto.setAllergies(updatedPatientDto.getAllergies());
-        dto.setAntecedentsMedicaux(updatedPatientDto.getAntecedentsMedicaux());
-        dto.setAdressePatient(updatedPatientDto.getAdressePatient());
-        dto.setNom(updatedPatientDto.getNom());
-        dto.setPrenom(updatedPatientDto.getPrenom());
-        dto.setDateDeNaissance(updatedPatientDto.getDateDeNaissance());
-        dto.setSexe(updatedPatientDto.getSexe());
+        dto.setAntecedentsMedicaux(updatedPatient.getAntecedentsMedicaux());
+        dto.setNom(updatedPatient.getNom());
+        dto.setPrenom(updatedPatient.getPrenom());
+        dto.setDateDeNaissance(updatedPatient.getDateDeNaissance());
+        dto.setSexe(updatedPatient.getSexe());
+
+
 
        //dto.setAssurance(updatedPatientDto.getAssurance());
 
@@ -94,6 +95,6 @@ public class PatientServiceImpl implements PatientService {
     public void delete(Long id) {
         if (id == null)
             log.error("ID is null");
-        patientRepository.findById(id);
+        patientRepository.deleteById(id);
     }
 }

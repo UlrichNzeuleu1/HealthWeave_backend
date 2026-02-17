@@ -18,8 +18,10 @@ public class PersonnelAdministratif {
     private Long id;
     private String adresse;
     private String nom;
+    private String prenom;
     private String role;
     private String telephone;
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "adresse_id")

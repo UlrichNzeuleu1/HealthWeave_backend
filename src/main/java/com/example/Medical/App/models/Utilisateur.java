@@ -18,19 +18,15 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+
 public class  Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
     private String prenom;
-    private String sexe;
-    private LocalDate dateDeNaissance;
     private String typeUtilisateur;
-
-    @Column(name = "email", unique = true)
     private String email;
     private String motDePasse;
 }

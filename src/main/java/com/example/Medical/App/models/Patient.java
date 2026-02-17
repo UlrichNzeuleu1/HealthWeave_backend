@@ -12,19 +12,17 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
+
 public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String antecedentsMedicaux;
-    private String allergies;
-    private String adressePatient;
     private String nom;
     private String prenom;
     private String sexe;
     private LocalDate dateDeNaissance;
+    private String antecedentsMedicaux;
 
 
 //    @ManyToOne

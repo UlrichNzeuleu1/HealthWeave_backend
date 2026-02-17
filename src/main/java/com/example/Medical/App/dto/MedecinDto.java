@@ -29,7 +29,7 @@ public class MedecinDto {
 
     public static MedecinDto fromEntity(Medecin medecin){
         return MedecinDto.builder()
-
+                .id(medecin.getId())
                 .specialite(medecin.getSpecialite())
                 .nom(medecin.getNom())
                 .prenom(medecin.getPrenom())
@@ -41,6 +41,7 @@ public class MedecinDto {
 
     public static Medecin toEntity(MedecinDto dto){
         return Medecin.builder()
+                .id(dto.getId())
                 .specialite(dto.getSpecialite())
                 .nom(dto.getNom())
                 .prenom(dto.getPrenom())

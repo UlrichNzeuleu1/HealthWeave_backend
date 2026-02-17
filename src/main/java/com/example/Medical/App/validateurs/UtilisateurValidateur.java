@@ -16,9 +16,9 @@ public class UtilisateurValidateur {
         if (dto == null){
             erreurs.add("Veuillez renseigner le nom");
             erreurs.add("Veuillez renseigner le prenom");
-            erreurs.add("Veuillez renseigner le sexe");
-            erreurs.add("Veuillez renseigner la date de naissance");
             erreurs.add("Veuillez renseigner le type d'utilisateur");
+            erreurs.add("Veuillez renseigner l'E-mail");
+            erreurs.add("Veuillez renseigner le password");
 
             return erreurs;
         }
@@ -27,12 +27,12 @@ public class UtilisateurValidateur {
             erreurs.add("Veuillez renseigner le nom");
         if (!StringUtils.hasLength(dto.getPrenom()))
             erreurs.add("Veuillez renseigner le prenom");
-        if (!StringUtils.hasLength(dto.getSexe()))
-            erreurs.add("Veuillez renseigner le sexe");
-        if (dto.getDateDeNaissance() == null)
-            erreurs.add("Veuillez renseigner la date de naissance");
         if (!StringUtils.hasLength(dto.getTypeUtilisateur()))
             erreurs.add("Veuillez renseigner le type d'utilisateur");
+        if (!StringUtils.hasLength(dto.getEmail()))
+            erreurs.add("Veuillez renseigner l'E-mail");
+        if (!StringUtils.hasLength(dto.getMotDePasse()))
+            erreurs.add("Veuillez renseigner le password");
 
         return erreurs;
     }

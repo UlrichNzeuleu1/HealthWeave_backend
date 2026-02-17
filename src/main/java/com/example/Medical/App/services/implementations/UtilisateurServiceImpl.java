@@ -35,9 +35,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
         if (!errors.isEmpty()){
             log.error("Utilisateur is not valid {} ", dto);
-            throw new InvalidEntityException("L'Utilisateur' n'est pas valide ", ErrorCodes.UTILISATEUR_NOT_VALID,errors);
+            throw new InvalidEntityException("L'Utilisateur n'est pas valide ", ErrorCodes.UTILISATEUR_NOT_VALID,errors);
         }
         return UtilisateurDto.fromEntity(repository.save(UtilisateurDto.toEntity(dto)));
+
     }
 
     @Override
@@ -76,12 +77,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .map(UtilisateurDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun utilisateur trouve avec l'id "+id+" dans la bdd", ErrorCodes.UTILISATEUR_NOT_FOUND));
 
-
-        dto.setTypeUtilisateur(updatedUtilisateurDto.getTypeUtilisateur());
-        dto.setSexe(updatedUtilisateurDto.getSexe());
         dto.setNom(updatedUtilisateurDto.getNom());
         dto.setPrenom(updatedUtilisateurDto.getPrenom());
-        dto.setDateDeNaissance(updatedUtilisateurDto.getDateDeNaissance());
+        dto.setEmail(updatedUtilisateurDto.getEmail());
+        dto.setMotDePasse(updatedUtilisateurDto.getMotDePasse());
+        dto.setTypeUtilisateur(updatedUtilisateurDto.getTypeUtilisateur());
 
         return UtilisateurDto.fromEntity(repository.save(UtilisateurDto.toEntity(dto)));
 

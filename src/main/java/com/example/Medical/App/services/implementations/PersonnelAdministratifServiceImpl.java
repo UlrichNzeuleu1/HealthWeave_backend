@@ -96,10 +96,12 @@ public class PersonnelAdministratifServiceImpl implements PersonnelAdministratif
                 .map(PersonnelAdministratifDto::fromEntity)
                 .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
-
+        dto.setNom(updatedDto.getNom());
         dto.setRole(updatedDto.getRole());
+        dto.setPrenom(updatedDto.getPrenom());
         dto.setAdresse(updatedDto.getAdresse());
         dto.setTelephone(updatedDto.getTelephone());
+
 
         return PersonnelAdministratifDto.fromEntity(repository.save(PersonnelAdministratifDto.toEntity(dto)));
     }

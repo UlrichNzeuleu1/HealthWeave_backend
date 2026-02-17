@@ -12,12 +12,11 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class PatientDto {
 
     private Long id;
     private String antecedentsMedicaux;
-    private String allergies;
-    private String adressePatient;
     private String nom;
     private String prenom;
     private String sexe;
@@ -27,13 +26,11 @@ public class PatientDto {
 
     public static PatientDto fromEntity(Patient patient){
         return PatientDto.builder()
-                .adressePatient(patient.getAdressePatient())
+                .id(patient.getId())
                 .antecedentsMedicaux(patient.getAntecedentsMedicaux())
-                .allergies(patient.getAllergies())
                 .nom(patient.getNom())
                 .prenom(patient.getPrenom())
                 .sexe(patient.getSexe())
-                .adressePatient(patient.getAdressePatient())
                 .dateDeNaissance(patient.getDateDeNaissance())
 
                 .build();
@@ -41,10 +38,9 @@ public class PatientDto {
 
     public static Patient toEntity(PatientDto dto){
         return Patient.builder()
-                .adressePatient(dto.getAdressePatient())
+                .id(dto.getId())
                 .antecedentsMedicaux(dto.getAntecedentsMedicaux())
-              //  .assurance(dto.getAssurance())
-                .allergies(dto.getAllergies())
+              //.assurance(dto.getAssurance())
                 .prenom(dto.getPrenom())
                 .nom(dto.getNom())
                 .sexe(dto.getSexe())

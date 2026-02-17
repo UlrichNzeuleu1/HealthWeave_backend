@@ -7,11 +7,9 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDate;
 import java.util.List;
 
-@EqualsAndHashCode()
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
 @Data
 @Builder
 public class Medecin{
@@ -46,12 +44,12 @@ public class Medecin{
 //    @OneToMany(mappedBy = "medecin", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<RendezVous> rendezVousList;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "medecin_medicament",
-            joinColumns = @JoinColumn(name = "medecin_id"),
-            inverseJoinColumns = @JoinColumn(name = "medicament_id")
-    )
-    private List<Medicament> medicaments;
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "medecin_medicament",
+//            joinColumns = @JoinColumn(name = "medecin_id"),
+//            inverseJoinColumns = @JoinColumn(name = "medicament_id")
+//    )
+//    private List<Medicament> medicaments;
 
 }

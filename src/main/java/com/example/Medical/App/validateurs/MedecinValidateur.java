@@ -23,6 +23,7 @@ public class MedecinValidateur {
             erreurs.add("Veuillez renseigner votre email");
             return erreurs;
         }
+
         if(!StringUtils.hasLength(dto.getSpecialite()))
             erreurs.add("Veuillez renseigner votre specialite");
         if(!StringUtils.hasLength(dto.getNom()))
@@ -31,12 +32,13 @@ public class MedecinValidateur {
             erreurs.add("Veuillez renseigner votre prenom");
         if(!StringUtils.hasLength(dto.getSexe()))
             erreurs.add("Veuillez renseigner votre sexe");
+        if (dto.getDateDeNaissance() == null) {
+            erreurs.add("Veuillez renseigner votre date de naissance");
+        } else if (dto.getDateDeNaissance().isAfter(LocalDate.now())) {
+            erreurs.add("La date de naissance ne peut pas être dans le futur");
+        }
         if(!StringUtils.hasLength(dto.getEmail()))
             erreurs.add("Veuillez renseigner votre email");
-
-        if (dto.getDateDeNaissance() == null)
-            erreurs.add("Veuillez renseigner votre date de naissance");
-
 
         return erreurs;
     }

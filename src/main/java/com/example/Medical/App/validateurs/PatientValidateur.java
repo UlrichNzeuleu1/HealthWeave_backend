@@ -16,8 +16,6 @@ public class PatientValidateur {
 
         if (dto == null){
             erreurs.add("Veuillez renseigner vos antecedents medidaux");
-            erreurs.add("Veuillez renseigner vos allergies");
-            erreurs.add("Veuillez renseigner votre adresse");
             erreurs.add("Veuillez renseigner votre nom");
             erreurs.add("Veuillez renseigner votre prenom");
             erreurs.add("Veuillez renseigner le sexe");
@@ -27,10 +25,6 @@ public class PatientValidateur {
 
         if (!StringUtils.hasLength(dto.getAntecedentsMedicaux()))
             erreurs.add("Veuillez renseigner vos antecedents medidaux");
-        if (!StringUtils.hasLength(dto.getAllergies()))
-            erreurs.add("Veuillez renseigner vos allergies");
-        if (!StringUtils.hasLength(dto.getAdressePatient()))
-            erreurs.add("Veuillez renseigner votre adresse");
         if (!StringUtils.hasLength(dto.getNom()))
             erreurs.add("Veuillez renseigner votre nom");
         if (!StringUtils.hasLength(dto.getPrenom()))

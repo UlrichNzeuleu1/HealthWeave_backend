@@ -16,6 +16,7 @@ public class PersonnelAdministratifValidateur {
             erreurs.add("Veuillez renseigner votre adresse");
             erreurs.add("Veuillez renseigner votre telephone");
             erreurs.add("Veuillez renseigner votre nom");
+            erreurs.add("Veuillez renseigner votre prenom");
             return erreurs;
         }
 
@@ -27,6 +28,9 @@ public class PersonnelAdministratifValidateur {
             erreurs.add("Veuillez renseigner votre role ");
         if (!StringUtils.hasLength(dto.getNom()))
             erreurs.add("Veuillez renseigner votre nom ");
+        if (!StringUtils.hasLength(dto.getPrenom()))
+            erreurs.add("Veuillez renseigner votre prenom");
+
         return erreurs;
     }
 }
