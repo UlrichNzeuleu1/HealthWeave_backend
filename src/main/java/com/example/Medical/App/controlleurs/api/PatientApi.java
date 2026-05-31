@@ -1,5 +1,6 @@
 package com.example.Medical.App.controlleurs.api;
 
+import com.example.Medical.App.dto.MedecinDto;
 import com.example.Medical.App.dto.MedicamentDto;
 import com.example.Medical.App.dto.PatientDto;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ public interface PatientApi {
     PatientDto findById (@PathVariable("idPatient") Long id);
 
     @GetMapping(value = APP_ROOT + "/patients/{nomPatient}/getByNom", produces = MediaType.APPLICATION_JSON_VALUE)
-    PatientDto findByNom (@PathVariable("nomPatient") String nom);
+    List <PatientDto> findByNom (@PathVariable("nomPatient") String nom);
 
     @GetMapping(value = APP_ROOT + "/patients/all", produces = MediaType.APPLICATION_JSON_VALUE)
     List<PatientDto> findAll ();

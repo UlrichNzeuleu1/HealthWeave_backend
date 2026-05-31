@@ -1,5 +1,6 @@
 package com.example.Medical.App.services.implementations;
 
+import com.example.Medical.App.dto.MedecinDto;
 import com.example.Medical.App.dto.PatientDto;
 import com.example.Medical.App.exception.EntityNotFoundException;
 import com.example.Medical.App.exception.ErrorCodes;
@@ -52,14 +53,16 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto findByNom(String nom) {
+    public List<PatientDto> findByNom(String nom) {
         if (!StringUtils.hasLength(nom)) {
             log.error("Nom is empty");
             return null;
         }
-        return patientRepository.findByNom(nom)
+        return patientRepository.findByNomContainingIgnoreCase(nom).stream()
                 .map(PatientDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec le nom "+nom+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
+                .collect(Collectors.toList());
+
+                //.orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec le nom "+nom+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
     }
 
@@ -81,6 +84,7 @@ public class PatientServiceImpl implements PatientService {
         dto.setAntecedentsMedicaux(updatedPatient.getAntecedentsMedicaux());
         dto.setNom(updatedPatient.getNom());
         dto.setPrenom(updatedPatient.getPrenom());
+        dto.setPhone(updatedPatient.getPhone());
         dto.setDateDeNaissance(updatedPatient.getDateDeNaissance());
         dto.setSexe(updatedPatient.getSexe());
 

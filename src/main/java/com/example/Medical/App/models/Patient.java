@@ -21,9 +21,14 @@ public class Patient {
     private String nom;
     private String prenom;
     private String sexe;
+    private String phone;
     private LocalDate dateDeNaissance;
     private String antecedentsMedicaux;
 
+    private String address;
+    private String email;
+    private String bloodGroup;
+    private String weight;
 
 //    @ManyToOne
 //    @JoinColumn(name = "adresse_id")

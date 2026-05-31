@@ -6,6 +6,7 @@ import com.example.Medical.App.models.Patient;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,14 +14,20 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PatientDto {
+public class PatientDto  {
 
     private Long id;
     private String antecedentsMedicaux;
     private String nom;
     private String prenom;
+    private String phone;
     private String sexe;
     private LocalDate dateDeNaissance;
+    private String address;
+    private String email;
+    private String bloodGroup;
+    private String weight;
+
    // private Assurance assurance;
 
 
@@ -30,8 +37,13 @@ public class PatientDto {
                 .antecedentsMedicaux(patient.getAntecedentsMedicaux())
                 .nom(patient.getNom())
                 .prenom(patient.getPrenom())
+                .phone(patient.getPhone())
                 .sexe(patient.getSexe())
                 .dateDeNaissance(patient.getDateDeNaissance())
+                .address(patient.getAddress())
+                .email(patient.getEmail())
+                .weight(patient.getWeight())
+                .bloodGroup(patient.getBloodGroup())
 
                 .build();
     }
@@ -43,8 +55,13 @@ public class PatientDto {
               //.assurance(dto.getAssurance())
                 .prenom(dto.getPrenom())
                 .nom(dto.getNom())
+                .phone((dto.getPhone()))
                 .sexe(dto.getSexe())
                 .dateDeNaissance(dto.getDateDeNaissance())
+                .address(dto.getAddress())
+                .weight(dto.getWeight())
+                .bloodGroup(dto.getBloodGroup())
+                .email(dto.getEmail())
                 .build();
     }
 }

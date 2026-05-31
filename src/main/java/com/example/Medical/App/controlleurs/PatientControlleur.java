@@ -31,7 +31,7 @@ public class PatientControlleur implements PatientApi {
     }
 
     @Override
-    public PatientDto findByNom(String nom) {
+    public List<PatientDto> findByNom(String nom) {
         return patientService.findByNom(nom);
     }
 
