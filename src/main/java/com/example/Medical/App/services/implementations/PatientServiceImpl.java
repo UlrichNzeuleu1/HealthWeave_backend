@@ -14,7 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,20 +31,51 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     private final PatientRepository patientRepository;
 
+    private final String uploadDir = "uploads/patients";
+
+    @Override
+    public PatientDto savePatientWithPhoto(PatientDto patientDto, MultipartFile file) {
+        if (file != null && !file.isEmpty()) {
+            try {
+                // creer le dossier s'il nexiste pas
+                Path uploadPath = Paths.get(uploadDir);
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+                // Générer un nom de fichier unique pour éviter les doublons
+                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                // combinons maintenant le chemin du dossier d'upload et le nom unique du fichier pour obtenir un chemin complet et precis ou le fichier sera stocke sur le disque dur
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Maintenaant enregistrons le chemin relatif ou l'URL dans l'entité
+                patientDto.setPhotoUrl("/images/" + fileName);
+
+            } catch (IOException e) {
+                throw new RuntimeException("Erreur lors de l'enregistrement de l'image");
+            }
+        }
+
+        return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(patientDto)));
+
+    }
+
     @Autowired
     public PatientServiceImpl(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
     @Override
-    public PatientDto save(PatientDto patientDto) {
-        List<String> errors = PatientValidateur.validate(patientDto);
+    public PatientDto save(PatientDto dto) {
 
-        if (!errors.isEmpty()){
-            log.error("Patient is not valid {}",patientDto);
-            throw new InvalidEntityException("Patient n'est pas valide", ErrorCodes.PATIENT_NOT_VALID,errors);
+
+        List<String> errors = PatientValidateur.validate(dto);
+
+        if (!errors.isEmpty()) {
+            log.error("Patient is not valid {}", dto);
+            throw new InvalidEntityException("Patient n'est pas valide", ErrorCodes.PATIENT_NOT_VALID, errors);
         }
-        return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(patientDto)));
+        return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(dto)));
     }
 
     @Override
@@ -49,7 +86,7 @@ public class PatientServiceImpl implements PatientService {
         }
         return patientRepository.findById(id)
                 .map(PatientDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
+                .orElseThrow(() -> new EntityNotFoundException("Aucun patient trouve avec l'id " + id + " dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
     }
 
     @Override
@@ -62,7 +99,7 @@ public class PatientServiceImpl implements PatientService {
                 .map(PatientDto::fromEntity)
                 .collect(Collectors.toList());
 
-                //.orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec le nom "+nom+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
+        //.orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec le nom "+nom+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
     }
 
@@ -78,9 +115,9 @@ public class PatientServiceImpl implements PatientService {
 
         PatientDto dto = patientRepository.findById(id)
                 .map(PatientDto::fromEntity)
-                .orElseThrow(()-> new EntityNotFoundException("Aucun patient trouve avec l'id "+id+" dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
+                .orElseThrow(() -> new EntityNotFoundException("Aucun patient trouve avec l'id " + id + " dans la bdd", ErrorCodes.PATIENT_NOT_FOUND));
 
-
+        //dto.setId(id);
         dto.setAntecedentsMedicaux(updatedPatient.getAntecedentsMedicaux());
         dto.setNom(updatedPatient.getNom());
         dto.setPrenom(updatedPatient.getPrenom());
@@ -88,9 +125,14 @@ public class PatientServiceImpl implements PatientService {
         dto.setDateDeNaissance(updatedPatient.getDateDeNaissance());
         dto.setSexe(updatedPatient.getSexe());
 
+        dto.setAddress(updatedPatient.getAddress());
+        dto.setEmail(updatedPatient.getEmail());
+        dto.setBloodGroup(updatedPatient.getBloodGroup());
+        dto.setWeight(updatedPatient.getWeight());
+        dto.setPhotoUrl(updatedPatient.getPhotoUrl());
 
 
-       //dto.setAssurance(updatedPatientDto.getAssurance());
+        //dto.setAssurance(updatedPatientDto.getAssurance());
 
         return PatientDto.fromEntity(patientRepository.save(PatientDto.toEntity(dto)));
     }
@@ -101,4 +143,6 @@ public class PatientServiceImpl implements PatientService {
             log.error("ID is null");
         patientRepository.deleteById(id);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.Medical.App.services.interfaces;
 
 import com.example.Medical.App.dto.PatientDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface PatientService {
     List<PatientDto> findAll ();
     PatientDto update (Long id, PatientDto patientDto);
     void delete (Long id);
+
+    PatientDto savePatientWithPhoto(PatientDto patientDto, MultipartFile file);
 }

@@ -4,8 +4,12 @@ import com.example.Medical.App.controlleurs.api.PatientApi;
 import com.example.Medical.App.dto.PatientDto;
 import com.example.Medical.App.services.interfaces.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,10 +24,21 @@ public class PatientControlleur implements PatientApi {
         this.patientService = patientService;
     }
 
+    /*@Override
+    public PatientDto save(PatientDto patientDto) { return patientService.save(patientDto);}
+
+
     @Override
-    public PatientDto save(PatientDto patientDto) {
+    public PatientDto save(@RequestBody PatientDto patientDto){
         return patientService.save(patientDto);
+    }*/
+    @Override
+    public ResponseEntity<PatientDto> save(@RequestPart("patientDto") PatientDto patientDto, @RequestPart(value = "file", required = false) MultipartFile file){
+
+        PatientDto savedPatientDto = patientService.savePatientWithPhoto(patientDto,file);
+        return new ResponseEntity<>(savedPatientDto, HttpStatus.CREATED);
     }
+
 
     @Override
     public PatientDto findById(Long id) {

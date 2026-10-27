@@ -4,6 +4,7 @@ import com.example.Medical.App.models.Adresse;
 import com.example.Medical.App.models.Assurance;
 import com.example.Medical.App.models.Patient;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +29,9 @@ public class PatientDto  {
     private String bloodGroup;
     private String weight;
 
-   // private Assurance assurance;
+    private MultipartFile photo;  // Utilisé pour recevoir l'image envoyée par Angular
+    private String photoUrl;   // Utilisé pour renvoyer l'URL de l'image enregistrée à Angular
+
 
 
     public static PatientDto fromEntity(Patient patient){
@@ -44,6 +47,7 @@ public class PatientDto  {
                 .email(patient.getEmail())
                 .weight(patient.getWeight())
                 .bloodGroup(patient.getBloodGroup())
+                .photoUrl(patient.getPhotoUrl())
 
                 .build();
     }
@@ -62,6 +66,7 @@ public class PatientDto  {
                 .weight(dto.getWeight())
                 .bloodGroup(dto.getBloodGroup())
                 .email(dto.getEmail())
+                .photoUrl(dto.getPhotoUrl())
                 .build();
     }
 }

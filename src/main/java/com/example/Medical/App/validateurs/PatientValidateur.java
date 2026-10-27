@@ -51,6 +51,5 @@ public class PatientValidateur {
             erreurs.add("Veuillez renseigner le adresse");
 
         return erreurs;
-
     }
 }
