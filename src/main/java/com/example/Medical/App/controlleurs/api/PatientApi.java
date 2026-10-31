@@ -17,8 +17,13 @@ import static com.example.Medical.App.utils.Constants.APP_ROOT;
 @Api(APP_ROOT + "/patients")
 public interface PatientApi {
 
-    @PostMapping(value = APP_ROOT + "/patients/create",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<PatientDto> save(@RequestPart("patientDto") PatientDto patientDto, @RequestPart(value = "file", required = false) MultipartFile file);
+    @PostMapping(value = APP_ROOT + "/patients/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<PatientDto> save(
+            @RequestPart("patientDto") String patientDtoJson, // On récupère en String
+            @RequestPart(value = "file", required = false) MultipartFile file
+    );
+
+
 
     @GetMapping(value = APP_ROOT + "/patients/{idPatient}/getById", produces = MediaType.APPLICATION_JSON_VALUE)
     PatientDto findById (@PathVariable("idPatient") Long id);

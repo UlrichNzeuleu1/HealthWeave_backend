@@ -28,8 +28,6 @@ public class PatientDto  {
     private String email;
     private String bloodGroup;
     private String weight;
-
-    private MultipartFile photo;  // Utilisé pour recevoir l'image envoyée par Angular
     private String photoUrl;   // Utilisé pour renvoyer l'URL de l'image enregistrée à Angular
 
 

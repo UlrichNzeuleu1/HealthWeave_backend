@@ -3,6 +3,7 @@ package com.example.Medical.App.controlleurs;
 import com.example.Medical.App.controlleurs.api.PatientApi;
 import com.example.Medical.App.dto.PatientDto;
 import com.example.Medical.App.services.interfaces.PatientService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,10 +33,25 @@ public class PatientControlleur implements PatientApi {
     public PatientDto save(@RequestBody PatientDto patientDto){
         return patientService.save(patientDto);
     }*/
+    /*
     @Override
     public ResponseEntity<PatientDto> save(@RequestPart("patientDto") PatientDto patientDto, @RequestPart(value = "file", required = false) MultipartFile file){
 
         PatientDto savedPatientDto = patientService.savePatientWithPhoto(patientDto,file);
+        return new ResponseEntity<>(savedPatientDto, HttpStatus.CREATED);
+    }*/
+    @Override
+    public ResponseEntity<PatientDto> save(String patientDtoJson, MultipartFile file) {
+        PatientDto patientDto = null;
+        try {
+            // Conversion de la chaîne JSON en objet PatientDto
+            ObjectMapper objectMapper = new ObjectMapper();
+            patientDto = objectMapper.readValue(patientDtoJson, PatientDto.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur lors de la conversion du JSON patient", e);
+        }
+
+        PatientDto savedPatientDto = patientService.savePatientWithPhoto(patientDto, file);
         return new ResponseEntity<>(savedPatientDto, HttpStatus.CREATED);
     }
 
